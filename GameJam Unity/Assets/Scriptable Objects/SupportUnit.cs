@@ -2,7 +2,8 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Unit : MonoBehaviour
+[CreateAssetMenu(fileName = "New Support Unit", menuName = "Support Unit", order = 4)]
+public class SupportUnit : Unit
 {
     // Start is called before the first frame update
     void Start()
