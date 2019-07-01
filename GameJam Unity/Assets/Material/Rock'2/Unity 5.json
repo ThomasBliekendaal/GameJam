@@ -33,7 +33,7 @@
         }
     },
     "texturesets": {
-        "Bushy 1": {
+        "Rock2": {
             "shader": "Main shader"
         }
     }
