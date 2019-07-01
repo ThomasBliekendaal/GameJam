@@ -16,8 +16,8 @@ public class PlayerUnit : MonoBehaviour
     private float fireTimer;
     public List<EnemyUnit> targetedBy = new List<EnemyUnit>();
     public float invulnarableTime;
-    private List<PlayerUnit> units = new List<PlayerUnit>();
-    private PlayerUnit healTarget;
+    [SerializeField] private List<PlayerUnit> units = new List<PlayerUnit>();
+    [SerializeField] private PlayerUnit healTarget;
 
     [SerializeField] private int hp;
     private int damage;
@@ -98,7 +98,7 @@ public class PlayerUnit : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        if(target == null && other.tag != "Terrain")
+        if(target == null && other.tag == "Enemy")
         {
             target = other.gameObject;
             other.gameObject.GetComponent<EnemyUnit>().targetedBy.Add(this.gameObject.GetComponent<PlayerUnit>());
@@ -113,6 +113,7 @@ public class PlayerUnit : MonoBehaviour
         }
         else
         {
+            Debug.Log("Priest");
             foreach(PlayerUnit p in units)
             {
                 if(healTarget == null && p.hp < p.type.hp)
@@ -126,6 +127,7 @@ public class PlayerUnit : MonoBehaviour
             }
             if (healTarget != null)
             {
+                Debug.Log("heal");
                 healTarget.LoseHP(-damage);
                 healTarget = null;
             }

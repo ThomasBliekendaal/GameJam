@@ -72,6 +72,14 @@ public class EnemyUnit : MonoBehaviour
         }
     }
 
+    private void OnCollisionEnter(Collision collision)
+    {
+        if(collision.gameObject == target.gameObject)
+        {
+            agent.destination = transform.position;
+        }
+    }
+
     public void LoseHP(int i)
     {
         hp -= i;

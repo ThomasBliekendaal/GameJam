@@ -429,7 +429,7 @@ GameObject:
   - component: {fileID: 327469478}
   m_Layer: 0
   m_Name: Support
-  m_TagString: Melee
+  m_TagString: Support
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -489,6 +489,8 @@ MonoBehaviour:
   endGoal: {fileID: 0}
   targetedBy: []
   invulnarableTime: 0
+  units: []
+  healTarget: {fileID: 0}
   hp: 0
   abilityOne: {fileID: 791193581}
 --- !u!135 &327469481
@@ -570,7 +572,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 327469477}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 22.21, y: 0.88, z: 1.55}
+  m_LocalPosition: {x: 24.28, y: 0.88, z: 1.55}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -594,7 +596,7 @@ GameObject:
   - component: {fileID: 562440249}
   m_Layer: 0
   m_Name: Enemy
-  m_TagString: Untagged
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1125,7 +1127,7 @@ GameObject:
   - component: {fileID: 1883549481}
   m_Layer: 0
   m_Name: Ranged
-  m_TagString: Melee
+  m_TagString: Ranged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1185,6 +1187,8 @@ MonoBehaviour:
   endGoal: {fileID: 0}
   targetedBy: []
   invulnarableTime: 0
+  units: []
+  healTarget: {fileID: 0}
   hp: 0
   abilityOne: {fileID: 791193581}
 --- !u!135 &1883549484
@@ -1342,7 +1346,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!195 &1982254535
 NavMeshAgent:
   m_ObjectHideFlags: 0
@@ -1382,6 +1386,8 @@ MonoBehaviour:
   endGoal: {fileID: 0}
   targetedBy: []
   invulnarableTime: 0
+  units: []
+  healTarget: {fileID: 0}
   hp: 0
   abilityOne: {fileID: 791193581}
 --- !u!135 &1982254537
@@ -1463,7 +1469,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1982254534}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 22.21, y: 0.88, z: 1.55}
+  m_LocalPosition: {x: 20.74, y: 0.88, z: 1.55}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -1483,5 +1489,5 @@ Rigidbody:
   m_UseGravity: 1
   m_IsKinematic: 0
   m_Interpolate: 0
-  m_Constraints: 112
+  m_Constraints: 126
   m_CollisionDetection: 0

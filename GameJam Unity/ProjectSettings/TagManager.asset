@@ -9,6 +9,7 @@ TagManager:
   - Melee
   - Ranged
   - Support
+  - Enemy
   layers:
   - Default
   - TransparentFX

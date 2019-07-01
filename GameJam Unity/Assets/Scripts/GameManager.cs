@@ -10,7 +10,7 @@ public class GameManager : MonoBehaviour
     public List<GameObject> supportUnits = new List<GameObject>();
 
     // Start is called before the first frame update
-    void Start()
+    void Awake()
     {
         foreach(GameObject g in GameObject.FindGameObjectsWithTag("Melee"))
         {
