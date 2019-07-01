@@ -9,11 +9,12 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f3a313160cb1e5a4c8375e26bf4c9e75, type: 3}
-  m_Name: AI Damage
-  m_EditorClassIdentifier: 
-  hp: 12
-  damage: 1
-  attackRange: 2
-  detectRange: 10
-  fireRate: 1
+  m_Script: {fileID: 0}
+  m_Name: Wizard
+  m_EditorClassIdentifier: Assembly-CSharp::RangedUnit
+  hp: 100
+  damage: 5
+  range: 10
+  fireRate: 3
+  abilityCooldownOne: 10
+  abilityCooldownTwo: 10

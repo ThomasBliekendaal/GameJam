@@ -12,7 +12,7 @@ public class EnemyUnit : MonoBehaviour
     private NavMeshAgent agent;
     private GameObject target;
 
-    private int hp;
+    [SerializeField] private int hp;
     private int damage;
     private float attackRange;
     private float detectRange;
