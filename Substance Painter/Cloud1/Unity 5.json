@@ -33,7 +33,7 @@
         }
     },
     "texturesets": {
-        "Bushy 1": {
+        "Cloud1": {
             "shader": "Main shader"
         }
     }
