@@ -12,9 +12,9 @@ MonoBehaviour:
   m_Script: {fileID: 0}
   m_Name: Wizard
   m_EditorClassIdentifier: Assembly-CSharp::RangedUnit
-  hp: 100
+  hp: 30
   damage: 5
-  range: 10
+  range: 15
   fireRate: 3
   abilityCooldownOne: 10
   abilityCooldownTwo: 10
