@@ -2,9 +2,11 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
+using UnityEngine.UI;
 
 public class PlayerUnit : MonoBehaviour
 {
+    [Header("Data")]
     public Unit type;
     public SphereCollider rangeTrigger;
     private GameObject target;
@@ -13,14 +15,18 @@ public class PlayerUnit : MonoBehaviour
     private GameManager gameManager;
     private float fireTimer;
     public List<EnemyUnit> targetedBy = new List<EnemyUnit>();
+    public float invulnarableTime;
 
-    private int hp;
+    [SerializeField] private int hp;
     private int damage;
     private float range;
     private float fireRate;
     private float abilityCooldownOne;
     private float abilityCooldownTwo;
     private float cooldownTimer;
+
+    [Header("UI")]
+    public Button abilityOne;
 
     // Start is called before the first frame update
 
@@ -35,6 +41,7 @@ public class PlayerUnit : MonoBehaviour
         cooldownTimer = 0;
         agent = gameObject.GetComponent<NavMeshAgent>();
         gameManager = GameObject.FindGameObjectWithTag("GameManager").GetComponent<GameManager>();
+        invulnarableTime = 0;
     }
 
     void Start()
@@ -42,6 +49,7 @@ public class PlayerUnit : MonoBehaviour
         rangeTrigger.radius = range;
         endGoal = gameManager.endGoals[Random.Range(0, gameManager.endGoals.Count)];
         agent.destination = endGoal.transform.position;
+        abilityOne.onClick.AddListener(delegate { Ability(1); });
     }
 
     // Update is called once per frame
@@ -67,6 +75,11 @@ public class PlayerUnit : MonoBehaviour
         {
             cooldownTimer -= Time.deltaTime;
         }
+
+        if(invulnarableTime > 0)
+        {
+            invulnarableTime -= Time.deltaTime;
+        }
     }
 
     private void OnTriggerEnter(Collider other)
@@ -89,12 +102,12 @@ public class PlayerUnit : MonoBehaviour
         {
             if (ability == 1)
             {
-                type.AbilityOne();
+                type.AbilityOne(gameObject);
                 cooldownTimer = abilityCooldownOne;
             }
             if (ability == 2)
             {
-                type.AbilityTwo();
+                type.AbilityTwo(gameObject);
                 cooldownTimer = abilityCooldownTwo;
             }
         }
@@ -107,10 +120,13 @@ public class PlayerUnit : MonoBehaviour
 
     public void LoseHP(int damage)
     {
-        hp -= damage;
-        if(hp <= 0)
+        if (invulnarableTime <= 0)
         {
-            Death();
+            hp -= damage;
+            if (hp <= 0)
+            {
+                Death();
+            }
         }
     }
 

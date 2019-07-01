@@ -5,15 +5,10 @@ using UnityEngine;
 [CreateAssetMenu(fileName = "New Melee Unit", menuName = "Melee Unit", order = 2)]
 public class MeleeUnit : Unit
 {
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
+    public float invulnerableTime;
 
-    // Update is called once per frame
-    void Update()
+    public override void AbilityOne(GameObject self)
     {
-        
+        self.GetComponent<PlayerUnit>().invulnarableTime = invulnerableTime;
     }
 }

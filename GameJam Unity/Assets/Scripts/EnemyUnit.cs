@@ -33,6 +33,7 @@ public class EnemyUnit : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        attackTrigger.radius = attackRange;
         TargetSelect();
     }
 

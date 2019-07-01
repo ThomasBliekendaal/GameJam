@@ -18,3 +18,4 @@ MonoBehaviour:
   fireRate: 1
   abilityCooldownOne: 10
   abilityCooldownTwo: 10
+  invulnerableTime: 5

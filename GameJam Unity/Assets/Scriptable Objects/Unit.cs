@@ -12,12 +12,12 @@ public class Unit : ScriptableObject
     public float abilityCooldownOne;
     public float abilityCooldownTwo;
 
-    public virtual void AbilityOne()
+    public virtual void AbilityOne(GameObject self)
     {
         Debug.Log("Ability one activated");
     }
 
-    public virtual void AbilityTwo()
+    public virtual void AbilityTwo(GameObject self)
     {
         Debug.Log("Ability two activated");
     }
