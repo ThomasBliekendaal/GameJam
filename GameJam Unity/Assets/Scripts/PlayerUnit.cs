@@ -16,6 +16,8 @@ public class PlayerUnit : MonoBehaviour
     private float fireTimer;
     public List<EnemyUnit> targetedBy = new List<EnemyUnit>();
     public float invulnarableTime;
+    private List<PlayerUnit> units = new List<PlayerUnit>();
+    private PlayerUnit healTarget;
 
     [SerializeField] private int hp;
     private int damage;
@@ -50,6 +52,18 @@ public class PlayerUnit : MonoBehaviour
         endGoal = gameManager.endGoals[Random.Range(0, gameManager.endGoals.Count)];
         agent.destination = endGoal.transform.position;
         abilityOne.onClick.AddListener(delegate { Ability(1); });
+        foreach(GameObject g in gameManager.meleeUnits)
+        {
+            units.Add(g.GetComponent<PlayerUnit>());
+        }
+        foreach (GameObject g in gameManager.rangedUnits)
+        {
+            units.Add(g.GetComponent<PlayerUnit>());
+        }
+        foreach (GameObject g in gameManager.supportUnits)
+        {
+            units.Add(g.GetComponent<PlayerUnit>());
+        }
     }
 
     // Update is called once per frame
@@ -93,7 +107,33 @@ public class PlayerUnit : MonoBehaviour
 
     public void Attack()
     {
-        target.GetComponent<EnemyUnit>().LoseHP(damage);
+        if (gameObject.tag != "Support")
+        {
+            target.GetComponent<EnemyUnit>().LoseHP(damage);
+        }
+        else
+        {
+            foreach(PlayerUnit p in units)
+            {
+                if(healTarget == null && p.hp < p.type.hp)
+                {
+                    healTarget = p;
+                }
+                else if((p.type.hp - p.hp) > (healTarget.type.hp - healTarget.hp))
+                {
+                    healTarget = p;
+                }
+            }
+            if (healTarget != null)
+            {
+                healTarget.LoseHP(-damage);
+                healTarget = null;
+            }
+            else
+            {
+                target.GetComponent<EnemyUnit>().LoseHP(damage);
+            }
+        }
     }
 
     public virtual void Ability(int ability)
@@ -127,6 +167,10 @@ public class PlayerUnit : MonoBehaviour
             {
                 Death();
             }
+        }
+        if(hp > type.hp)
+        {
+            hp = type.hp;
         }
     }
 
