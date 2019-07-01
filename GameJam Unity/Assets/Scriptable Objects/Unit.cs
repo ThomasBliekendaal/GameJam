@@ -11,22 +11,6 @@ public class Unit : ScriptableObject
     public float fireRate;
     public float abilityCooldownOne;
     public float abilityCooldownTwo;
-    private float cooldownTimer;
-
-    public virtual void Ability(int type)
-    {
-        if (cooldownTimer <= 0)
-        {
-            if(type == 1)
-            {
-                AbilityOne();
-            }
-            if(type == 2)
-            {
-                AbilityTwo();
-            }
-        }
-    }
 
     public virtual void AbilityOne()
     {
