@@ -486,9 +486,15 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   type: {fileID: 11400000, guid: cce7186edff89bc46b7da48da8164941, type: 2}
   rangeTrigger: {fileID: 327469481}
-  endGoal: {fileID: 0}
-  targetedBy: []
   invulnarableTime: 0
+  spinTime: 0
+  damageBuff: 0
+  damageMultiplier: 0
+  damageBuffTimer: 0
+  target: {fileID: 0}
+  endGoal: {fileID: 0}
+  enemiesInRange: []
+  targetedBy: []
   units: []
   healTarget: {fileID: 0}
   hp: 0
@@ -615,6 +621,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   type: {fileID: 11400000, guid: 907df2da2427e9449af9780e4ccfa6cf, type: 2}
   attackTrigger: {fileID: 562440250}
+  seenBy: []
   targetedBy: []
   hp: 0
 --- !u!195 &562440249
@@ -1184,9 +1191,15 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   type: {fileID: 11400000, guid: 47959706a6d95484da70717e45a52f79, type: 2}
   rangeTrigger: {fileID: 1883549484}
-  endGoal: {fileID: 0}
-  targetedBy: []
   invulnarableTime: 0
+  spinTime: 0
+  damageBuff: 0
+  damageMultiplier: 0
+  damageBuffTimer: 0
+  target: {fileID: 0}
+  endGoal: {fileID: 0}
+  enemiesInRange: []
+  targetedBy: []
   units: []
   healTarget: {fileID: 0}
   hp: 0
@@ -1310,6 +1323,7 @@ MonoBehaviour:
   meleeUnits: []
   rangedUnits: []
   supportUnits: []
+  enemyUnits: []
 --- !u!4 &1920629382
 Transform:
   m_ObjectHideFlags: 0
@@ -1383,9 +1397,15 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   type: {fileID: 11400000, guid: 7b8853921d6744c4fb78b53f6b833077, type: 2}
   rangeTrigger: {fileID: 1982254537}
-  endGoal: {fileID: 0}
-  targetedBy: []
   invulnarableTime: 0
+  spinTime: 0
+  damageBuff: 0
+  damageMultiplier: 0
+  damageBuffTimer: 0
+  target: {fileID: 0}
+  endGoal: {fileID: 0}
+  enemiesInRange: []
+  targetedBy: []
   units: []
   healTarget: {fileID: 0}
   hp: 0
