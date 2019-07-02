@@ -7,7 +7,7 @@ public class RangedUnit : Unit
 {
     public GameObject explosion;
     public GameObject minion;
-    public Vector3 summonOffset;
+    public List<Vector3> spawnOffsets = new List<Vector3>();
 
     public override void AbilityOne(GameObject self)
     {
@@ -16,6 +16,9 @@ public class RangedUnit : Unit
 
     public override void AbilityTwo(GameObject self)
     {
-        Instantiate(minion, self.transform.position + summonOffset, self.transform.rotation);
+        foreach(Vector3 v in spawnOffsets)
+        {
+            Instantiate(minion, self.transform.position + v, self.transform.rotation);
+        }
     }
 }

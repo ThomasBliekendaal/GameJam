@@ -9,6 +9,7 @@ public class EnemyUnit : MonoBehaviour
     public SphereCollider attackTrigger;
     public List<PlayerUnit> seenBy = new List<PlayerUnit>();
     public List<PlayerUnit> targetedBy = new List<PlayerUnit>();
+    public List<Minion> targetedByMinions = new List<Minion>();
     private GameManager gameManager;
     private NavMeshAgent agent;
     private GameObject target;
@@ -62,11 +63,23 @@ public class EnemyUnit : MonoBehaviour
 
     private void Attack()
     {
-        target.GetComponent<PlayerUnit>().LoseHP(damage);
+        if (target.tag == "Minion")
+        {
+            target.GetComponent<Minion>().hp -= damage;
+        }
+        else
+        {
+            target.GetComponent<PlayerUnit>().LoseHP(damage);
+        }
     }
 
     private void OnTriggerEnter(Collider other)
     {
+        if(other.tag == "Minion")
+        {
+            target = other.gameObject;
+            target.GetComponent<Minion>().targetedBy.Add(gameObject.GetComponent<EnemyUnit>());
+        }
         if(other.gameObject == target.gameObject)
         {
             attacking = true;
@@ -100,6 +113,10 @@ public class EnemyUnit : MonoBehaviour
         foreach (PlayerUnit p in seenBy)
         {
             p.enemiesInRange.Remove(gameObject.GetComponent<EnemyUnit>());
+        }
+        foreach (Minion m in targetedByMinions)
+        {
+            m.ResetTarget();
         }
         Destroy(gameObject);
     }

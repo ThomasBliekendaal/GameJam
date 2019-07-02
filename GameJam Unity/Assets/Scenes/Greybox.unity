@@ -623,6 +623,7 @@ MonoBehaviour:
   attackTrigger: {fileID: 562440250}
   seenBy: []
   targetedBy: []
+  targetedByMinions: []
   hp: 0
 --- !u!195 &562440249
 NavMeshAgent:

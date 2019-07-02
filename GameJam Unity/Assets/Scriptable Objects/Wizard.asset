@@ -18,3 +18,7 @@ MonoBehaviour:
   fireRate: 3
   abilityCooldownOne: 10
   abilityCooldownTwo: 10
+  explosion: {fileID: 4851449780496341430, guid: b2e8d4baee263cf4c852d3ef6c1dc779,
+    type: 3}
+  minion: {fileID: 8917445495726711811, guid: fb5e9bd518c6a62489d82bd812edb569, type: 3}
+  spawnOffsets: []
