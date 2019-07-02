@@ -18,7 +18,7 @@ public class PlayerUnit : MonoBehaviour
     public float damageBuffTimer;
 
     [Header("Data")]
-    private GameObject target;
+    public GameObject target;
     public GameObject endGoal;
     private NavMeshAgent agent;
     private GameManager gameManager;
