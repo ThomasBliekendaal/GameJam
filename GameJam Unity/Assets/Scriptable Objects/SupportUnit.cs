@@ -13,12 +13,14 @@ public class SupportUnit : Unit
     {
         foreach (PlayerUnit p in self.gameObject.GetComponent<PlayerUnit>().units)
         {
-            p.LoseHP(healAmount);
+            Debug.Log("heal");
+            p.LoseHP(-healAmount);
         }
     }
 
     public override void AbilityTwo(GameObject self)
     {
+        Debug.Log("buff");
         foreach (PlayerUnit p in self.gameObject.GetComponent<PlayerUnit>().units)
         {
             p.damageMultiplier = damageMultiplier;

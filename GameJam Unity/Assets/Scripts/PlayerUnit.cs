@@ -38,6 +38,7 @@ public class PlayerUnit : MonoBehaviour
 
     [Header("UI")]
     public Button abilityOne;
+    public Button abilityTwo;
 
     // Start is called before the first frame update
 
@@ -61,6 +62,7 @@ public class PlayerUnit : MonoBehaviour
         endGoal = gameManager.endGoals[Random.Range(0, gameManager.endGoals.Count)];
         agent.destination = endGoal.transform.position;
         abilityOne.onClick.AddListener(delegate { Ability(1); });
+        abilityTwo.onClick.AddListener(delegate { Ability(2); });
         foreach(GameObject g in gameManager.meleeUnits)
         {
             units.Add(g.GetComponent<PlayerUnit>());

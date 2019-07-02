@@ -11,11 +11,13 @@ public class RangedUnit : Unit
 
     public override void AbilityOne(GameObject self)
     {
+        Debug.Log("explosion");
         Instantiate(explosion, self.GetComponent<PlayerUnit>().target.transform.position, Quaternion.identity);
     }
 
     public override void AbilityTwo(GameObject self)
     {
+        Debug.Log("summon");
         foreach(Vector3 v in spawnOffsets)
         {
             Instantiate(minion, self.transform.position + v, self.transform.rotation);

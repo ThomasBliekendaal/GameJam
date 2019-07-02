@@ -57,7 +57,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e9a3d12c438d58141a12da42ba347dcf, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  damage: 0
-  range: 0
-  speed: 0
+  damage: 10
+  range: 10
+  speed: 5
   trigger: {fileID: 5784759822325598207}
