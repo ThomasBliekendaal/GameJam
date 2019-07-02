@@ -7,6 +7,7 @@ public class EnemyUnit : MonoBehaviour
 {
     public AIUnit type;
     public SphereCollider attackTrigger;
+    public List<PlayerUnit> seenBy = new List<PlayerUnit>();
     public List<PlayerUnit> targetedBy = new List<PlayerUnit>();
     private GameManager gameManager;
     private NavMeshAgent agent;
@@ -95,6 +96,10 @@ public class EnemyUnit : MonoBehaviour
         {
             p.ClearTarget();
             p.targetedBy.Remove(gameObject.GetComponent<EnemyUnit>());
+        }
+        foreach (PlayerUnit p in seenBy)
+        {
+            p.enemiesInRange.Remove(gameObject.GetComponent<EnemyUnit>());
         }
         Destroy(gameObject);
     }

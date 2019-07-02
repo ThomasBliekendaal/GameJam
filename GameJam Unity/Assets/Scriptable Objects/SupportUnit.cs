@@ -5,15 +5,25 @@ using UnityEngine;
 [CreateAssetMenu(fileName = "New Support Unit", menuName = "Support Unit", order = 4)]
 public class SupportUnit : Unit
 {
-    // Start is called before the first frame update
-    void Start()
+    public int healAmount;
+    public float damageMultiplier;
+    public float damageBuffTime;
+
+    public override void AbilityOne(GameObject self)
     {
-        
+        foreach (PlayerUnit p in self.gameObject.GetComponent<PlayerUnit>().units)
+        {
+            p.LoseHP(healAmount);
+        }
     }
 
-    // Update is called once per frame
-    void Update()
+    public override void AbilityTwo(GameObject self)
     {
-        
+        foreach (PlayerUnit p in self.gameObject.GetComponent<PlayerUnit>().units)
+        {
+            p.damageMultiplier = damageMultiplier;
+            p.damageBuffTimer = damageBuffTime;
+            p.damageBuff = true;
+        }
     }
 }

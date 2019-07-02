@@ -6,9 +6,15 @@ using UnityEngine;
 public class MeleeUnit : Unit
 {
     public float invulnerableTime;
+    public float spinTime;
 
     public override void AbilityOne(GameObject self)
     {
         self.GetComponent<PlayerUnit>().invulnarableTime = invulnerableTime;
+    }
+
+    public override void AbilityTwo(GameObject self)
+    {
+        self.GetComponent<PlayerUnit>().spinTime = spinTime;
     }
 }

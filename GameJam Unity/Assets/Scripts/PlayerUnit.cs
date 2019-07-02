@@ -6,17 +6,26 @@ using UnityEngine.UI;
 
 public class PlayerUnit : MonoBehaviour
 {
-    [Header("Data")]
+    [Header("Fill manually")]
     public Unit type;
     public SphereCollider rangeTrigger;
+
+    [Header("Abilities")]
+    public float invulnarableTime;
+    public float spinTime;
+    public bool damageBuff;
+    public float damageMultiplier;
+    public float damageBuffTimer;
+
+    [Header("Data")]
     private GameObject target;
     public GameObject endGoal;
     private NavMeshAgent agent;
     private GameManager gameManager;
     private float fireTimer;
+    public List<EnemyUnit> enemiesInRange = new List<EnemyUnit>();
     public List<EnemyUnit> targetedBy = new List<EnemyUnit>();
-    public float invulnarableTime;
-    [SerializeField] private List<PlayerUnit> units = new List<PlayerUnit>();
+    public List<PlayerUnit> units = new List<PlayerUnit>();
     [SerializeField] private PlayerUnit healTarget;
 
     [SerializeField] private int hp;
@@ -74,10 +83,14 @@ public class PlayerUnit : MonoBehaviour
             agent.destination = gameObject.transform.position;
             transform.LookAt(target.transform.position);
             fireTimer -= Time.deltaTime;
-            if(fireTimer <= 0)
+            if(fireTimer <= 0 && spinTime <= 0)
             {
                 Attack();
                 fireTimer = fireRate;
+            }
+            else if (spinTime > 0)
+            {
+
             }
         }
         else
@@ -98,6 +111,11 @@ public class PlayerUnit : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
+        if(other.tag == "Enemy")
+        {
+            enemiesInRange.Add(other.GetComponent<EnemyUnit>());
+            other.gameObject.GetComponent<EnemyUnit>().seenBy.Add(this.gameObject.GetComponent<PlayerUnit>());
+        }
         if(target == null && other.tag == "Enemy")
         {
             target = other.gameObject;
@@ -109,7 +127,42 @@ public class PlayerUnit : MonoBehaviour
     {
         if (gameObject.tag != "Support")
         {
-            target.GetComponent<EnemyUnit>().LoseHP(damage);
+            if (damageBuff == false)
+            {
+                if (spinTime <= 0)
+                {
+                    target.GetComponent<EnemyUnit>().LoseHP(damage);
+                }
+                else
+                {
+                    foreach(EnemyUnit e in enemiesInRange)
+                    {
+                        e.LoseHP(damage);
+                        spinTime -= Time.deltaTime;
+                    }
+                }
+            }
+            else
+            {
+                if (spinTime <= 0)
+                {
+                    target.GetComponent<EnemyUnit>().LoseHP(Mathf.CeilToInt(damage * damageMultiplier));
+                }
+                else
+                {
+                    foreach (EnemyUnit e in enemiesInRange)
+                    {
+                        target.GetComponent<EnemyUnit>().LoseHP(Mathf.CeilToInt(damage * damageMultiplier));
+                        spinTime -= Time.deltaTime;
+                    }
+                }
+
+                damageBuffTimer -= Time.deltaTime;
+                if(damageBuffTimer <= 0)
+                {
+                    damageBuff = false;
+                }
+            }
         }
         else
         {
