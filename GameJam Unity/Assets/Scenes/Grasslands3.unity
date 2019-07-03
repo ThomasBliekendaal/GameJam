@@ -1641,7 +1641,7 @@ Light:
   serializedVersion: 9
   m_Type: 1
   m_Color: {r: 1, g: 0.95686275, b: 0.8392157, a: 1}
-  m_Intensity: 0.58
+  m_Intensity: 1.16
   m_Range: 10
   m_SpotAngle: 30
   m_InnerSpotAngle: 21.80208
@@ -1724,12 +1724,12 @@ PrefabInstance:
     - target: {fileID: 3224327183418842778, guid: 0e4472a7f01221f4283bbf768c4ca4a9,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: 32.26
+      value: 32.042
       objectReference: {fileID: 0}
     - target: {fileID: 3224327183418842778, guid: 0e4472a7f01221f4283bbf768c4ca4a9,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: -190.08
+      value: -189.844
       objectReference: {fileID: 0}
     - target: {fileID: 3224327183418842778, guid: 0e4472a7f01221f4283bbf768c4ca4a9,
         type: 3}
@@ -4286,6 +4286,11 @@ PrefabInstance:
       propertyPath: m_SizeDelta.y
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 9166920982183794567, guid: cd06d38bb1e095b4b9d66327bf1c5e1d,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: cd06d38bb1e095b4b9d66327bf1c5e1d, type: 3}
 --- !u!1001 &1332776061
@@ -4495,12 +4500,12 @@ PrefabInstance:
     - target: {fileID: 2499298844761454422, guid: 5438ea62dc9e7474b9f49b7a7de0f484,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: 32.695
+      value: 31.68
       objectReference: {fileID: 0}
     - target: {fileID: 2499298844761454422, guid: 5438ea62dc9e7474b9f49b7a7de0f484,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: -190.98
+      value: -190.66
       objectReference: {fileID: 0}
     - target: {fileID: 2499298844761454422, guid: 5438ea62dc9e7474b9f49b7a7de0f484,
         type: 3}
