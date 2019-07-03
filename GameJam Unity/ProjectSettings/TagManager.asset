@@ -10,6 +10,7 @@ TagManager:
   - Ranged
   - Support
   - Enemy
+  - WorldUI
   layers:
   - Default
   - TransparentFX

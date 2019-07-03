@@ -131,8 +131,8 @@ MonoBehaviour:
   addSpeed: {fileID: 0}
   addFireRate: {fileID: 0}
   popUp: {fileID: 1183893854907659308, guid: d9d646b1f05884f4c84dd9fcf67ae138, type: 3}
-  red: {r: 1, g: 0, b: 0, a: 0}
-  green: {r: 0, g: 1, b: 0.040144444, a: 0}
+  red: {r: 1, g: 0, b: 0, a: 1}
+  green: {r: 0, g: 1, b: 0.040144444, a: 1}
   invulnarableTime: 0
   spinTime: 0
   damageBuff: 0

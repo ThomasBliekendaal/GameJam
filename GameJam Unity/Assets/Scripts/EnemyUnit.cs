@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
 using UnityEngine.UI;
+using TMPro;
 
 public class EnemyUnit : MonoBehaviour
 {
@@ -107,8 +108,8 @@ public class EnemyUnit : MonoBehaviour
     public void LoseHP(int i)
     {
         GameObject g = Instantiate(popUp, transform.position + new Vector3(0, 1, 0), Quaternion.identity);
-        g.GetComponent<Text>().color = red;
-        g.GetComponent<Text>().text = "-" + i.ToString();
+        g.GetComponent<TextMeshProUGUI>().color = red;
+        g.GetComponent<PopUp>().text = "-" + i.ToString();
         hp -= i;
         if(hp <= 0)
         {

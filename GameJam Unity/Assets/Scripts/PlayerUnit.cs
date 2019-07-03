@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
 using UnityEngine.UI;
+using TMPro;
 
 public class PlayerUnit : MonoBehaviour
 {
@@ -259,14 +260,15 @@ public class PlayerUnit : MonoBehaviour
         GameObject g = Instantiate(popUp, transform.position + new Vector3(0, 1, 0), Quaternion.identity);
         if (damage > 0)
         {
-            g.GetComponent<Text>().color = red;
-            g.GetComponent<Text>().text = "-" + damage.ToString();
+            g.GetComponent<TextMeshProUGUI>().color = red;
+            g.GetComponent<PopUp>().text = "-" + damage.ToString();
         }
         else if (damage < 0)
         {
-            g.GetComponent<Text>().color = green;
-            g.GetComponent<Text>().text = "+" + (-1*damage).ToString();
+            g.GetComponent<TextMeshProUGUI>().color = green;
+            g.GetComponent<PopUp>().text = "+" + (-1 * damage).ToString();
         }
+        g.transform.position = transform.position + new Vector3(0, 1, 0);
         if (invulnarableTime <= 0)
         {
             hp -= damage;
