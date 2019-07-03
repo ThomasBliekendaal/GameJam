@@ -40,18 +40,18 @@ public class PlayerUnit : MonoBehaviour
     public GameObject endGoal;
     private NavMeshAgent agent;
     private GameManager gameManager;
-    private float fireTimer;
+    [SerializeField]  private float fireTimer;
     public List<EnemyUnit> enemiesInRange = new List<EnemyUnit>();
     public List<EnemyUnit> targetedBy = new List<EnemyUnit>();
     public List<PlayerUnit> units = new List<PlayerUnit>();
-    [SerializeField] private PlayerUnit healTarget;
+    private PlayerUnit healTarget;
     private AudioSource source;
 
     [SerializeField] private int hp;
     private int maxHp;
-    private int damage;
+    [SerializeField] private int damage;
     private float range;
-    private float fireRate;
+    [SerializeField]  private float fireRate;
     private float abilityCooldownOne;
     private float abilityCooldownTwo;
     private float cooldownTimer;
@@ -134,12 +134,7 @@ public class PlayerUnit : MonoBehaviour
             if(fireTimer <= 0 && spinTime <= 0)
             {
                 Attack();
-                fireTimer = fireRate;
                 source.PlayOneShot(type.attack);
-            }
-            else if (spinTime > 0)
-            {
-                //make spin attack
             }
         }
         else
@@ -172,38 +167,44 @@ public class PlayerUnit : MonoBehaviour
         }
     }
 
+    private void OnTriggerStay(Collider other)
+    {
+        if(spinTime > 0 && other.tag == "Enemy" && fireTimer <= 0)
+        {
+            print("SPIN TO WIN");
+            if(damageBuff == true)
+            {
+                other.GetComponent<EnemyUnit>().LoseHP(Mathf.CeilToInt(damage * damageMultiplier));
+                fireTimer = fireRate;
+            }
+            else
+            {
+                other.GetComponent<EnemyUnit>().LoseHP(damage);
+                fireTimer = fireRate;
+            }
+        }
+    }
+
     public void Attack()
     {
         if (gameObject.tag != "Support")
         {
             if (damageBuff == false)
             {
-                if (spinTime <= 0)
+                if (fireTimer <= 0 && spinTime <= 0)
                 {
+                    print("basic one");
                     target.GetComponent<EnemyUnit>().LoseHP(damage);
-                }
-                else
-                {
-                    foreach(EnemyUnit e in enemiesInRange)
-                    {
-                        e.LoseHP(damage);
-                        spinTime -= Time.deltaTime;
-                    }
+                    fireTimer = fireRate;
+                    print(fireTimer + "/" + fireRate);
                 }
             }
             else
             {
-                if (spinTime <= 0)
+                if (fireTimer <= 0 && spinTime <= 0)
                 {
                     target.GetComponent<EnemyUnit>().LoseHP(Mathf.CeilToInt(damage * damageMultiplier));
-                }
-                else
-                {
-                    foreach (EnemyUnit e in enemiesInRange)
-                    {
-                        target.GetComponent<EnemyUnit>().LoseHP(Mathf.CeilToInt(damage * damageMultiplier));
-                        spinTime -= Time.deltaTime;
-                    }
+                    fireTimer = fireRate;
                 }
 
                 damageBuffTimer -= Time.deltaTime;
@@ -231,10 +232,12 @@ public class PlayerUnit : MonoBehaviour
                 healTarget.LoseHP(-damage);
                 healTarget = null;
                 source.PlayOneShot(type.healAudio);
+                fireTimer = fireRate;
             }
             else
             {
                 target.GetComponent<EnemyUnit>().LoseHP(damage);
+                fireTimer = fireRate;
             }
         }
     }
@@ -245,6 +248,7 @@ public class PlayerUnit : MonoBehaviour
         {
             if (ability == 1)
             {
+                print("call abil");
                 type.AbilityOne(gameObject);
                 source.PlayOneShot(type.abilityOneAudio);
                 cooldownTimer = abilityCooldownOne;

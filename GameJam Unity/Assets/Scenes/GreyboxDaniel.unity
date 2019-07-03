@@ -339,6 +339,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Ranged
       objectReference: {fileID: 0}
+    - target: {fileID: 2108057615154026716, guid: feb1a6e524766cc4db9eca3b4176325d,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 2108057615154026692, guid: feb1a6e524766cc4db9eca3b4176325d,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -1166,6 +1171,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Melee (1)
       objectReference: {fileID: 0}
+    - target: {fileID: 761167954178389995, guid: 3ade51b85d151f541a16c02a4862f407,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 761167954178389984, guid: 3ade51b85d151f541a16c02a4862f407,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -1294,6 +1304,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Ranged (1)
+      objectReference: {fileID: 0}
+    - target: {fileID: 2108057615154026716, guid: feb1a6e524766cc4db9eca3b4176325d,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 2108057615154026692, guid: feb1a6e524766cc4db9eca3b4176325d,
         type: 3}
@@ -1429,6 +1444,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Support
+      objectReference: {fileID: 0}
+    - target: {fileID: 1367716992406525083, guid: 505d4b9f499cbb348a23543092a5a57d,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 1367716992406525075, guid: 505d4b9f499cbb348a23543092a5a57d,
         type: 3}
@@ -3468,6 +3488,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Support (1)
+      objectReference: {fileID: 0}
+    - target: {fileID: 1367716992406525083, guid: 505d4b9f499cbb348a23543092a5a57d,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 1367716992406525075, guid: 505d4b9f499cbb348a23543092a5a57d,
         type: 3}
