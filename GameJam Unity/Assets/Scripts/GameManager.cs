@@ -1,11 +1,15 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class GameManager : MonoBehaviour
 {
     public GameObject victory;
     public GameObject gameOver;
+    public AudioSource audioSource;
+    public AudioClip menuMusic;
+    public AudioClip levelMusic;
 
     public List<GameObject> endGoals = new List<GameObject>();
     public List<GameObject> meleeUnits = new List<GameObject>();
@@ -33,6 +37,17 @@ public class GameManager : MonoBehaviour
         {
             enemyUnits.Add(g);
         }
+
+        if(SceneManager.GetActiveScene().buildIndex < 1)
+        {
+            audioSource.PlayOneShot(menuMusic);
+            audioSource.loop = true;
+        }
+        else
+        {
+            audioSource.PlayOneShot(levelMusic);
+            audioSource.loop = true;
+        }
     }
 
     // Update is called once per frame
@@ -45,7 +60,14 @@ public class GameManager : MonoBehaviour
         }
         else if (enemyUnits.Count <= 0)
         {
-            victory.SetActive(true);
+            if (SceneManager.GetActiveScene().buildIndex < 5)
+            {
+                SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
+            }
+            else
+            {
+                victory.SetActive(true);
+            }
         }
     }
 }

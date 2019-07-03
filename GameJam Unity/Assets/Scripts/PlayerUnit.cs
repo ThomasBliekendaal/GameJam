@@ -45,6 +45,7 @@ public class PlayerUnit : MonoBehaviour
     public List<EnemyUnit> targetedBy = new List<EnemyUnit>();
     public List<PlayerUnit> units = new List<PlayerUnit>();
     [SerializeField] private PlayerUnit healTarget;
+    private AudioSource source;
 
     [SerializeField] private int hp;
     private int maxHp;
@@ -71,6 +72,7 @@ public class PlayerUnit : MonoBehaviour
         agent = gameObject.GetComponent<NavMeshAgent>();
         gameManager = GameObject.FindGameObjectWithTag("GameManager").GetComponent<GameManager>();
         invulnarableTime = 0;
+        source = GetComponent<AudioSource>();
     }
 
     void Start()
@@ -133,10 +135,11 @@ public class PlayerUnit : MonoBehaviour
             {
                 Attack();
                 fireTimer = fireRate;
+                source.PlayOneShot(type.attack);
             }
             else if (spinTime > 0)
             {
-
+                //make spin attack
             }
         }
         else
@@ -220,16 +223,14 @@ public class PlayerUnit : MonoBehaviour
                 }
                 else if((p.maxHp - p.hp) > (healTarget.maxHp - healTarget.hp))
                 {
-                    Debug.Log(p);
-                    Debug.Log(healTarget);
                     healTarget = p;
                 }
             }
             if (healTarget != null)
             {
-                Debug.Log("heal");
                 healTarget.LoseHP(-damage);
                 healTarget = null;
+                source.PlayOneShot(type.healAudio);
             }
             else
             {
@@ -245,11 +246,13 @@ public class PlayerUnit : MonoBehaviour
             if (ability == 1)
             {
                 type.AbilityOne(gameObject);
+                source.PlayOneShot(type.abilityOneAudio);
                 cooldownTimer = abilityCooldownOne;
             }
             if (ability == 2)
             {
                 type.AbilityTwo(gameObject);
+                source.PlayOneShot(type.abilityTwoAudio);
                 cooldownTimer = abilityCooldownTwo;
             }
         }
@@ -267,11 +270,13 @@ public class PlayerUnit : MonoBehaviour
         {
             g.GetComponent<TextMeshProUGUI>().color = red;
             g.GetComponent<PopUp>().text = "-" + damage.ToString();
+            source.PlayOneShot(type.getHit);
         }
         else if (damage < 0)
         {
             g.GetComponent<TextMeshProUGUI>().color = green;
             g.GetComponent<PopUp>().text = "+" + (-1 * damage).ToString();
+            source.PlayOneShot(type.getHeal);
         }
         g.transform.position = transform.position + new Vector3(0, 1, 0);
         if (invulnarableTime <= 0)
@@ -319,6 +324,7 @@ public class PlayerUnit : MonoBehaviour
         {
             gameManager.supportUnits.Remove(gameObject);
         }
+        source.PlayOneShot(type.death);
         Destroy(gameObject);
     }
 

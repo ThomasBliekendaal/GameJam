@@ -12,6 +12,14 @@ public class Unit : ScriptableObject
     public float abilityCooldownOne;
     public float abilityCooldownTwo;
 
+    public AudioClip attack;
+    public AudioClip getHit;
+    public AudioClip death;
+    public AudioClip getHeal;
+    public AudioClip abilityOneAudio;
+    public AudioClip abilityTwoAudio;
+    public AudioClip healAudio;
+
     public virtual void AbilityOne(GameObject self)
     {
         Debug.Log("Ability one activated");
