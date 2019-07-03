@@ -13,38 +13,53 @@ ModelImporter:
       74: 1025952912896260150
     second: Untitled.002
   - first:
-      74: -8902254579638497297
-    second: Knight|Attack
+      74: -4648467354866217722
+    second: Character Body|.001
   - first:
-      74: 1091062580063949804
-    second: Knight|Death
+      74: -4213669326212590733
+    second: Character Body|.002
   - first:
-      74: -4296824086038772734
-    second: Knight|Untitled
+      74: -8490403906769245893
+    second: Character Body|Bakuhatsu
   - first:
-      74: -8633029392231105861
-    second: Knight|Untitled.001
+      74: -7000657339419863138
+    second: Character Body|Death
   - first:
-      74: 8784686022163536759
-    second: Knight|Untitled.002
+      74: 3492961123815578929
+    second: Character Body|Flinch
   - first:
-      74: 1007593879769892604
-    second: Knight|Walk
+      74: 2150078750089250547
+    second: Character Body|Gnome Summon
   - first:
-      74: 5393490331474535063
-    second: Knight|Walk.001
+      74: 6856355654994018935
+    second: Character Body|Idle
   - first:
-      74: -6398999876197038921
-    second: Knight|Walk.002
+      74: -3924952734478830597
+    second: Character Body|Knight Attack
   - first:
-      74: 2353199507768262307
-    second: Knight|Walk.003
+      74: -3729026662556164904
+    second: Character Body|.
   - first:
-      74: -6883918155194831770
-    second: Knight|Walk.004
+      74: -7071095623544180229
+    second: Character Body|Knight Buff
   - first:
-      74: 4237674163594855481
-    second: Knight|Walk.005
+      74: -8330474463126040681
+    second: Character Body|Priestess Attack
+  - first:
+      74: -7408056927590119562
+    second: Character Body|Priestess Buff
+  - first:
+      74: 6204767956693507190
+    second: Character Body|Priestess Heal
+  - first:
+      74: 1199732124427335573
+    second: Character Body|Sword Spin
+  - first:
+      74: -2422710662104155244
+    second: Character Body|Walk
+  - first:
+      74: 8766189110383346635
+    second: Character Body|Wizard Attack
   externalObjects: {}
   materials:
     importMaterials: 1
@@ -54,7 +69,7 @@ ModelImporter:
   animations:
     legacyGenerateAnimations: 4
     bakeSimulation: 0
-    resampleCurves: 0
+    resampleCurves: 1
     optimizeGameObjects: 0
     motionNodeName: 
     rigImportErrors: 
@@ -65,7 +80,7 @@ ModelImporter:
     animationDoRetargetingWarnings: 0
     importAnimatedCustomProperties: 0
     importConstraints: 0
-    animationCompression: 0
+    animationCompression: 1
     animationRotationError: 0.5
     animationPositionError: 0.5
     animationScaleError: 0.5
@@ -74,38 +89,9 @@ ModelImporter:
     extraUserProperties: []
     clipAnimations:
     - serializedVersion: 16
-      name: Knight|Attack
-      takeName: Knight|Attack
-      internalID: -8902254579638497297
-      firstFrame: 0
-      lastFrame: 78
-      wrapMode: 0
-      orientationOffsetY: 0
-      level: 0
-      cycleOffset: 0
-      loop: 0
-      hasAdditiveReferencePose: 0
-      loopTime: 1
-      loopBlend: 1
-      loopBlendOrientation: 0
-      loopBlendPositionY: 0
-      loopBlendPositionXZ: 0
-      keepOriginalOrientation: 0
-      keepOriginalPositionY: 1
-      keepOriginalPositionXZ: 0
-      heightFromFeet: 0
-      mirror: 0
-      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
-      curves: []
-      events: []
-      transformMask: []
-      maskType: 3
-      maskSource: {instanceID: 0}
-      additiveReferencePoseFrame: 0
-    - serializedVersion: 16
-      name: Knight|Death
-      takeName: Knight|Death
-      internalID: 1091062580063949804
+      name: Character Body|Death
+      takeName: Character Body|Death
+      internalID: -7000657339419863138
       firstFrame: 0
       lastFrame: 120
       wrapMode: 0
@@ -132,9 +118,154 @@ ModelImporter:
       maskSource: {instanceID: 0}
       additiveReferencePoseFrame: 0
     - serializedVersion: 16
-      name: Knight|Walk
-      takeName: Knight|Walk
-      internalID: 1007593879769892604
+      name: Character Body|Flinch
+      takeName: Character Body|Flinch
+      internalID: 3492961123815578929
+      firstFrame: 0
+      lastFrame: 28
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      hasAdditiveReferencePose: 0
+      loopTime: 1
+      loopBlend: 1
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask: []
+      maskType: 3
+      maskSource: {instanceID: 0}
+      additiveReferencePoseFrame: 0
+    - serializedVersion: 16
+      name: Character Body|Idle
+      takeName: Character Body|Idle
+      internalID: 6856355654994018935
+      firstFrame: 0
+      lastFrame: 38
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      hasAdditiveReferencePose: 0
+      loopTime: 1
+      loopBlend: 1
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask: []
+      maskType: 3
+      maskSource: {instanceID: 0}
+      additiveReferencePoseFrame: 0
+    - serializedVersion: 16
+      name: Character Body|Knight Attack
+      takeName: Character Body|Knight Attack
+      internalID: -3924952734478830597
+      firstFrame: 0
+      lastFrame: 78
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      hasAdditiveReferencePose: 0
+      loopTime: 1
+      loopBlend: 1
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask: []
+      maskType: 3
+      maskSource: {instanceID: 0}
+      additiveReferencePoseFrame: 0
+    - serializedVersion: 16
+      name: Character Body|Knight Buff
+      takeName: Character Body|Knight Buff
+      internalID: -7071095623544180229
+      firstFrame: 0
+      lastFrame: 105
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      hasAdditiveReferencePose: 0
+      loopTime: 0
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask: []
+      maskType: 3
+      maskSource: {instanceID: 0}
+      additiveReferencePoseFrame: 0
+    - serializedVersion: 16
+      name: Character Body|Sword Spin
+      takeName: Character Body|Sword Spin
+      internalID: 1199732124427335573
+      firstFrame: 0
+      lastFrame: 18
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      hasAdditiveReferencePose: 0
+      loopTime: 1
+      loopBlend: 1
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask: []
+      maskType: 3
+      maskSource: {instanceID: 0}
+      additiveReferencePoseFrame: 0
+    - serializedVersion: 16
+      name: Character Body|Walk
+      takeName: Character Body|Walk
+      internalID: -2422710662104155244
       firstFrame: 0
       lastFrame: 78
       wrapMode: 0
