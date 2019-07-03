@@ -324,22 +324,38 @@ public class PlayerUnit : MonoBehaviour
 
     private void AddHp()
     {
-        hp += 10;
-        maxHp += 10;
+        if(gameManager.GetComponent<UIManager>().points > 0)
+        {
+            gameManager.GetComponent<UIManager>().points -= 1;
+            hp += 10;
+            maxHp += 10;
+        }
     }
 
     public void AddDamage()
     {
-        damage += 1;
+        if (gameManager.GetComponent<UIManager>().points > 0)
+        {
+            gameManager.GetComponent<UIManager>().points -= 1;
+            damage += 1;
+        }
     }
 
     public void AddSpeed()
     {
-        agent.speed += 1;
+        if (gameManager.GetComponent<UIManager>().points > 0)
+        {
+            gameManager.GetComponent<UIManager>().points -= 1;
+            agent.speed += 1;
+        }
     }
 
     public void AddFireRate()
     {
-        fireRate -= 0.2f;
+        if (gameManager.GetComponent<UIManager>().points > 0)
+        {
+            gameManager.GetComponent<UIManager>().points -= 1;
+            fireRate -= 0.2f;
+        }
     }
 }
