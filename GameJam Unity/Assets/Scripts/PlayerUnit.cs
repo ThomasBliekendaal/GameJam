@@ -23,6 +23,10 @@ public class PlayerUnit : MonoBehaviour
     public GameObject popUp;
     public Color red;
     public Color green;
+    public Text hpText;
+    public Text damageText;
+    public Text speedText;
+    public Text fireRateText;
 
     [Header("Abilities")]
     public float invulnarableTime;
@@ -36,17 +40,18 @@ public class PlayerUnit : MonoBehaviour
     public GameObject endGoal;
     private NavMeshAgent agent;
     private GameManager gameManager;
-    private float fireTimer;
+    [SerializeField]  private float fireTimer;
     public List<EnemyUnit> enemiesInRange = new List<EnemyUnit>();
     public List<EnemyUnit> targetedBy = new List<EnemyUnit>();
     public List<PlayerUnit> units = new List<PlayerUnit>();
-    [SerializeField] private PlayerUnit healTarget;
+    private PlayerUnit healTarget;
+    private AudioSource source;
 
     [SerializeField] private int hp;
     private int maxHp;
-    private int damage;
+    [SerializeField] private int damage;
     private float range;
-    private float fireRate;
+    [SerializeField]  private float fireRate;
     private float abilityCooldownOne;
     private float abilityCooldownTwo;
     private float cooldownTimer;
@@ -67,6 +72,7 @@ public class PlayerUnit : MonoBehaviour
         agent = gameObject.GetComponent<NavMeshAgent>();
         gameManager = GameObject.FindGameObjectWithTag("GameManager").GetComponent<GameManager>();
         invulnarableTime = 0;
+        source = GetComponent<AudioSource>();
     }
 
     void Start()
@@ -114,6 +120,7 @@ public class PlayerUnit : MonoBehaviour
         {
             units.Add(g.GetComponent<PlayerUnit>());
         }
+        UpdateStatUI();
     }
 
     // Update is called once per frame
@@ -127,11 +134,7 @@ public class PlayerUnit : MonoBehaviour
             if(fireTimer <= 0 && spinTime <= 0)
             {
                 Attack();
-                fireTimer = fireRate;
-            }
-            else if (spinTime > 0)
-            {
-
+                source.PlayOneShot(type.attack);
             }
         }
         else
@@ -164,38 +167,44 @@ public class PlayerUnit : MonoBehaviour
         }
     }
 
+    private void OnTriggerStay(Collider other)
+    {
+        if(spinTime > 0 && other.tag == "Enemy" && fireTimer <= 0)
+        {
+            print("SPIN TO WIN");
+            if(damageBuff == true)
+            {
+                other.GetComponent<EnemyUnit>().LoseHP(Mathf.CeilToInt(damage * damageMultiplier));
+                fireTimer = fireRate;
+            }
+            else
+            {
+                other.GetComponent<EnemyUnit>().LoseHP(damage);
+                fireTimer = fireRate;
+            }
+        }
+    }
+
     public void Attack()
     {
         if (gameObject.tag != "Support")
         {
             if (damageBuff == false)
             {
-                if (spinTime <= 0)
+                if (fireTimer <= 0 && spinTime <= 0)
                 {
+                    print("basic one");
                     target.GetComponent<EnemyUnit>().LoseHP(damage);
-                }
-                else
-                {
-                    foreach(EnemyUnit e in enemiesInRange)
-                    {
-                        e.LoseHP(damage);
-                        spinTime -= Time.deltaTime;
-                    }
+                    fireTimer = fireRate;
+                    print(fireTimer + "/" + fireRate);
                 }
             }
             else
             {
-                if (spinTime <= 0)
+                if (fireTimer <= 0 && spinTime <= 0)
                 {
                     target.GetComponent<EnemyUnit>().LoseHP(Mathf.CeilToInt(damage * damageMultiplier));
-                }
-                else
-                {
-                    foreach (EnemyUnit e in enemiesInRange)
-                    {
-                        target.GetComponent<EnemyUnit>().LoseHP(Mathf.CeilToInt(damage * damageMultiplier));
-                        spinTime -= Time.deltaTime;
-                    }
+                    fireTimer = fireRate;
                 }
 
                 damageBuffTimer -= Time.deltaTime;
@@ -215,20 +224,20 @@ public class PlayerUnit : MonoBehaviour
                 }
                 else if((p.maxHp - p.hp) > (healTarget.maxHp - healTarget.hp))
                 {
-                    Debug.Log(p);
-                    Debug.Log(healTarget);
                     healTarget = p;
                 }
             }
             if (healTarget != null)
             {
-                Debug.Log("heal");
                 healTarget.LoseHP(-damage);
                 healTarget = null;
+                source.PlayOneShot(type.healAudio);
+                fireTimer = fireRate;
             }
             else
             {
                 target.GetComponent<EnemyUnit>().LoseHP(damage);
+                fireTimer = fireRate;
             }
         }
     }
@@ -239,12 +248,15 @@ public class PlayerUnit : MonoBehaviour
         {
             if (ability == 1)
             {
+                print("call abil");
                 type.AbilityOne(gameObject);
+                source.PlayOneShot(type.abilityOneAudio);
                 cooldownTimer = abilityCooldownOne;
             }
             if (ability == 2)
             {
                 type.AbilityTwo(gameObject);
+                source.PlayOneShot(type.abilityTwoAudio);
                 cooldownTimer = abilityCooldownTwo;
             }
         }
@@ -262,11 +274,13 @@ public class PlayerUnit : MonoBehaviour
         {
             g.GetComponent<TextMeshProUGUI>().color = red;
             g.GetComponent<PopUp>().text = "-" + damage.ToString();
+            source.PlayOneShot(type.getHit);
         }
         else if (damage < 0)
         {
             g.GetComponent<TextMeshProUGUI>().color = green;
             g.GetComponent<PopUp>().text = "+" + (-1 * damage).ToString();
+            source.PlayOneShot(type.getHeal);
         }
         g.transform.position = transform.position + new Vector3(0, 1, 0);
         if (invulnarableTime <= 0)
@@ -314,32 +328,64 @@ public class PlayerUnit : MonoBehaviour
         {
             gameManager.supportUnits.Remove(gameObject);
         }
+        source.PlayOneShot(type.death);
         Destroy(gameObject);
     }
 
     private void DisplayUpgrades()
     {
+        print("show up");
+        print(upgrades.active);
         upgrades.SetActive(!upgrades.active);
+        UpdateStatUI();
     }
 
     private void AddHp()
     {
-        hp += 10;
-        maxHp += 10;
+        if(gameManager.GetComponent<UIManager>().points > 0)
+        {
+            gameManager.GetComponent<UIManager>().points -= 1;
+            hp += 10;
+            maxHp += 10;
+        }
+        UpdateStatUI();
     }
 
     public void AddDamage()
     {
-        damage += 1;
+        if (gameManager.GetComponent<UIManager>().points > 0)
+        {
+            gameManager.GetComponent<UIManager>().points -= 1;
+            damage += 1;
+        }
+        UpdateStatUI();
     }
 
     public void AddSpeed()
     {
-        agent.speed += 1;
+        if (gameManager.GetComponent<UIManager>().points > 0)
+        {
+            gameManager.GetComponent<UIManager>().points -= 1;
+            agent.speed += 1;
+        }
+        UpdateStatUI();
     }
 
     public void AddFireRate()
     {
-        fireRate -= 0.2f;
+        if (gameManager.GetComponent<UIManager>().points > 0)
+        {
+            gameManager.GetComponent<UIManager>().points -= 1;
+            fireRate -= 0.2f;
+        }
+        UpdateStatUI();
+    }
+
+    public void UpdateStatUI()
+    {
+        hpText.text = maxHp.ToString();
+        damageText.text = damage.ToString();
+        speedText.text = agent.speed.ToString();
+        fireRateText.text = fireRate.ToString();
     }
 }

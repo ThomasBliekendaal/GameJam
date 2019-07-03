@@ -43,6 +43,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a3ea900b4c7ea3845a154724f4d48a0f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  victory: {fileID: 0}
+  gameOver: {fileID: 0}
+  audioSource: {fileID: 0}
+  menuMusic: {fileID: 8300000, guid: 8cba3fdc8f2fb334db7bdb1d94631420, type: 3}
+  levelMusic: {fileID: 8300000, guid: 3166797ed3483b5419f64df1c79d157a, type: 3}
   endGoals:
   - {fileID: 0}
   meleeUnits: []

@@ -133,6 +133,7 @@ public class EnemyUnit : MonoBehaviour
         {
             m.ResetTarget();
         }
+        gameManager.GetComponent<UIManager>().points += 1;
         Destroy(gameObject);
     }
 

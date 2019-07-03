@@ -18,6 +18,13 @@ MonoBehaviour:
   fireRate: 3
   abilityCooldownOne: 10
   abilityCooldownTwo: 10
+  attack: {fileID: 8300000, guid: db3ecfd0bef554e4d9bb8d4920fff1b3, type: 3}
+  getHit: {fileID: 8300000, guid: 72cbeaa5239b86248b33100faef8d068, type: 3}
+  death: {fileID: 8300000, guid: 3e901da816e1dbe428c50b0ac26598e5, type: 3}
+  getHeal: {fileID: 8300000, guid: 78fef752ada0b2347a85f52817ee086b, type: 3}
+  abilityOneAudio: {fileID: 8300000, guid: 51e1b98a49109194fa95a6b843e1cb29, type: 3}
+  abilityTwoAudio: {fileID: 8300000, guid: 553a2625fadf7bc4fb0c7c535e4ed832, type: 3}
+  healAudio: {fileID: 0}
   explosion: {fileID: 4851449780496341430, guid: b2e8d4baee263cf4c852d3ef6c1dc779,
     type: 3}
   minion: {fileID: 8917445495726711811, guid: fb5e9bd518c6a62489d82bd812edb569, type: 3}
