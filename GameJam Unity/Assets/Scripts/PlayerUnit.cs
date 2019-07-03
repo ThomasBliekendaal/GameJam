@@ -257,7 +257,7 @@ public class PlayerUnit : MonoBehaviour
 
     public void LoseHP(int damage)
     {
-        GameObject g = Instantiate(popUp, transform.position + new Vector3(0, 1, 0), Quaternion.identity);
+        GameObject g = Instantiate(popUp, transform.position + new Vector3(Random.Range(-0.5f, 0.5f), 1, 0), Quaternion.identity);
         if (damage > 0)
         {
             g.GetComponent<TextMeshProUGUI>().color = red;

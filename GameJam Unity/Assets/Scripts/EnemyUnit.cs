@@ -107,7 +107,7 @@ public class EnemyUnit : MonoBehaviour
 
     public void LoseHP(int i)
     {
-        GameObject g = Instantiate(popUp, transform.position + new Vector3(0, 1, 0), Quaternion.identity);
+        GameObject g = Instantiate(popUp, transform.position + new Vector3(Random.Range(-0.5f, 0.5f), 1, 0), Quaternion.identity);
         g.GetComponent<TextMeshProUGUI>().color = red;
         g.GetComponent<PopUp>().text = "-" + i.ToString();
         hp -= i;
