@@ -199,6 +199,12 @@ PrefabInstance:
       objectReference: {fileID: 557296628}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 3ade51b85d151f541a16c02a4862f407, type: 3}
+--- !u!1 &58842951 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 1124307378032651305, guid: cd06d38bb1e095b4b9d66327bf1c5e1d,
+    type: 3}
+  m_PrefabInstance: {fileID: 9166920983740732600}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &146802477 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 8436911167813654846, guid: d7dadaa90965e5146b7cfbd4755d1902,
@@ -289,6 +295,12 @@ PrefabInstance:
       propertyPath: abilityOne
       value: 
       objectReference: {fileID: 686958324}
+    - target: {fileID: 2108057615154026719, guid: feb1a6e524766cc4db9eca3b4176325d,
+        type: 3}
+      propertyPath: type
+      value: 
+      objectReference: {fileID: 11400000, guid: 47959706a6d95484da70717e45a52f79,
+        type: 2}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: feb1a6e524766cc4db9eca3b4176325d, type: 3}
 --- !u!1 &267749500
@@ -1089,6 +1101,58 @@ MonoBehaviour:
   mainMenu:
   - {fileID: 1847513843}
   - {fileID: 771824674}
+  start: []
+  options: []
+  optionsClose: []
+  closeGame: []
+  optionsPanel: {fileID: 0}
+  pausePanel: {fileID: 58842951}
+--- !u!114 &1563428726
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1563428724}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7bb03bf9e333864439d807fd670f4857, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  musicMixer: {fileID: 24100000, guid: 477dc028fdc4cb54d99d6552752e2b36, type: 2}
+  effectsMixer: {fileID: 24100000, guid: 61089bbc165e5f44b8417cd28b202260, type: 2}
+--- !u!114 &1563428727
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1563428724}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 63a49677719431545b5e53f6603d3ae8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  masterSlider: {fileID: 1811439820}
+  musicSlider: {fileID: 1614351532}
+  effectsSlider: {fileID: 1851073068}
+  masterVolume: 0
+  musicVolume: 0
+  effectsVolume: 0
+  musicMixer: {fileID: 24100000, guid: 477dc028fdc4cb54d99d6552752e2b36, type: 2}
+  effectsMixer: {fileID: 24100000, guid: 61089bbc165e5f44b8417cd28b202260, type: 2}
+--- !u!114 &1614351532 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 3197395843320114281, guid: cd06d38bb1e095b4b9d66327bf1c5e1d,
+    type: 3}
+  m_PrefabInstance: {fileID: 9166920983740732600}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: -113659843, guid: f70555f144d8491a825f0804e09c671c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &1677509674
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1293,6 +1357,18 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 72e08c1ddc1e3754ba77bbf0e6ddeaf1, type: 3}
+--- !u!114 &1811439820 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 6559437462666167301, guid: cd06d38bb1e095b4b9d66327bf1c5e1d,
+    type: 3}
+  m_PrefabInstance: {fileID: 9166920983740732600}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: -113659843, guid: f70555f144d8491a825f0804e09c671c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &1840996043 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 5327103068219297955, guid: cd06d38bb1e095b4b9d66327bf1c5e1d,
@@ -1327,6 +1403,18 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 1392445389, guid: f70555f144d8491a825f0804e09c671c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &1851073068 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 3596174858992884428, guid: cd06d38bb1e095b4b9d66327bf1c5e1d,
+    type: 3}
+  m_PrefabInstance: {fileID: 9166920983740732600}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: -113659843, guid: f70555f144d8491a825f0804e09c671c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!1 &1881360684 stripped

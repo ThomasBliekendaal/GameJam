@@ -13,6 +13,7 @@ public class UIManager : MonoBehaviour
     public List<Button> closeGame = new List<Button>();
 
     public GameObject optionsPanel;
+    public GameObject pausePanel;
 
     private void Start()
     {
@@ -40,7 +41,18 @@ public class UIManager : MonoBehaviour
 
     private void Update()
     {
-        
+        if(pausePanel != null && Input.GetButtonDown("Cancel"))
+        {
+            pausePanel.SetActive(!pausePanel.active);
+            if(pausePanel.active == true)
+            {
+                Time.timeScale = 0;
+            }
+            else
+            {
+                Time.timeScale = 1;
+            }
+        }
     }
 
     private void LoadScene(int scene)
