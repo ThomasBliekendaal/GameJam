@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f3a313160cb1e5a4c8375e26bf4c9e75, type: 3}
   m_Name: AI Damage
   m_EditorClassIdentifier: 
-  hp: 12000000
+  hp: 12
   damage: 1
   attackRange: 2
   detectRange: 10

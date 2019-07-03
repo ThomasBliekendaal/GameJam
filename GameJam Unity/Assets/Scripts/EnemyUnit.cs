@@ -2,11 +2,17 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
+using UnityEngine.UI;
 
 public class EnemyUnit : MonoBehaviour
 {
+    [Header ("Fill Manually")]
     public AIUnit type;
     public SphereCollider attackTrigger;
+    public GameObject popUp;
+    public Color red;
+
+    [Header("Data")]
     public List<PlayerUnit> seenBy = new List<PlayerUnit>();
     public List<PlayerUnit> targetedBy = new List<PlayerUnit>();
     public List<Minion> targetedByMinions = new List<Minion>();
@@ -21,6 +27,7 @@ public class EnemyUnit : MonoBehaviour
     private float fireRate;
     private float fireTimer;
     private bool attacking;
+    private bool stay;
 
     private void Awake()
     {
@@ -44,9 +51,10 @@ public class EnemyUnit : MonoBehaviour
     {
         if (target == null)
         {
+            stay = false;
             TargetSelect();
         }
-        else
+        else if (stay == false)
         {
             agent.destination = target.transform.position;
         }
@@ -79,6 +87,7 @@ public class EnemyUnit : MonoBehaviour
         {
             target = other.gameObject;
             target.GetComponent<Minion>().targetedBy.Add(gameObject.GetComponent<EnemyUnit>());
+            attacking = true;
         }
         if(other.gameObject == target.gameObject)
         {
@@ -91,11 +100,15 @@ public class EnemyUnit : MonoBehaviour
         if(collision.gameObject == target.gameObject)
         {
             agent.destination = transform.position;
+            stay = true;
         }
     }
 
     public void LoseHP(int i)
     {
+        GameObject g = Instantiate(popUp, transform.position + new Vector3(0, 1, 0), Quaternion.identity);
+        g.GetComponent<Text>().color = red;
+        g.GetComponent<Text>().text = "-" + i.ToString();
         hp -= i;
         if(hp <= 0)
         {
@@ -105,6 +118,7 @@ public class EnemyUnit : MonoBehaviour
 
     private void Death()
     {
+        gameManager.enemyUnits.Remove(gameObject);
         foreach(PlayerUnit p in targetedBy)
         {
             p.ClearTarget();

@@ -10,6 +10,19 @@ public class PlayerUnit : MonoBehaviour
     public Unit type;
     public SphereCollider rangeTrigger;
 
+    [Header("UI Fill manually")]
+    public Button abilityOne;
+    public Button abilityTwo;
+    public Button displayUpgrades;
+    public GameObject upgrades;
+    public Button addHP;
+    public Button addDamage;
+    public Button addSpeed;
+    public Button addFireRate;
+    public GameObject popUp;
+    public Color red;
+    public Color green;
+
     [Header("Abilities")]
     public float invulnarableTime;
     public float spinTime;
@@ -29,22 +42,21 @@ public class PlayerUnit : MonoBehaviour
     [SerializeField] private PlayerUnit healTarget;
 
     [SerializeField] private int hp;
+    private int maxHp;
     private int damage;
     private float range;
     private float fireRate;
     private float abilityCooldownOne;
     private float abilityCooldownTwo;
     private float cooldownTimer;
-
-    [Header("UI")]
-    public Button abilityOne;
-    public Button abilityTwo;
+    
 
     // Start is called before the first frame update
 
     private void Awake()
     {
         hp = type.hp;
+        maxHp = type.hp;
         damage = type.damage;
         range = type.range;
         fireRate = type.fireRate;
@@ -61,8 +73,34 @@ public class PlayerUnit : MonoBehaviour
         rangeTrigger.radius = range;
         endGoal = gameManager.endGoals[Random.Range(0, gameManager.endGoals.Count)];
         agent.destination = endGoal.transform.position;
-        abilityOne.onClick.AddListener(delegate { Ability(1); });
-        abilityTwo.onClick.AddListener(delegate { Ability(2); });
+        if(displayUpgrades != null)
+        {
+            displayUpgrades.onClick.AddListener(DisplayUpgrades);
+        }
+        if(addHP != null)
+        {
+            addHP.onClick.AddListener(AddHp);
+        }
+        if(addDamage != null)
+        {
+            addDamage.onClick.AddListener(AddDamage);
+        }
+        if(addSpeed != null)
+        {
+            addSpeed.onClick.AddListener(AddSpeed);
+        }
+        if(addFireRate != null)
+        {
+            addFireRate.onClick.AddListener(AddFireRate);
+        }
+        if(abilityOne != null)
+        {
+            abilityOne.onClick.AddListener(delegate { Ability(1); });
+        }
+        if (abilityTwo != null)
+        {
+            abilityTwo.onClick.AddListener(delegate { Ability(2); });
+        }
         foreach(GameObject g in gameManager.meleeUnits)
         {
             units.Add(g.GetComponent<PlayerUnit>());
@@ -168,15 +206,16 @@ public class PlayerUnit : MonoBehaviour
         }
         else
         {
-            Debug.Log("Priest");
             foreach(PlayerUnit p in units)
             {
-                if(healTarget == null && p.hp < p.type.hp)
+                if(healTarget == null && p.hp < p.maxHp)
                 {
                     healTarget = p;
                 }
-                else if((p.type.hp - p.hp) > (healTarget.type.hp - healTarget.hp))
+                else if((p.maxHp - p.hp) > (healTarget.maxHp - healTarget.hp))
                 {
+                    Debug.Log(p);
+                    Debug.Log(healTarget);
                     healTarget = p;
                 }
             }
@@ -217,6 +256,17 @@ public class PlayerUnit : MonoBehaviour
 
     public void LoseHP(int damage)
     {
+        GameObject g = Instantiate(popUp, transform.position + new Vector3(0, 1, 0), Quaternion.identity);
+        if (damage > 0)
+        {
+            g.GetComponent<Text>().color = red;
+            g.GetComponent<Text>().text = "-" + damage.ToString();
+        }
+        else if (damage < 0)
+        {
+            g.GetComponent<Text>().color = green;
+            g.GetComponent<Text>().text = "+" + (-1*damage).ToString();
+        }
         if (invulnarableTime <= 0)
         {
             hp -= damage;
@@ -225,15 +275,27 @@ public class PlayerUnit : MonoBehaviour
                 Death();
             }
         }
-        if(hp > type.hp)
+        if(hp > maxHp)
         {
-            hp = type.hp;
+            hp = maxHp;
         }
     }
 
     public void Death()
     {
-        foreach(EnemyUnit e in targetedBy)
+        if(type.name == "MeleeUnit")
+        {
+            gameManager.meleeUnits.Remove(gameObject);
+        }
+        if (type.name == "RangedUnit")
+        {
+            gameManager.rangedUnits.Remove(gameObject);
+        }
+        if (type.name == "SupportUnit")
+        {
+            gameManager.supportUnits.Remove(gameObject);
+        }
+        foreach (EnemyUnit e in targetedBy)
         {
             e.ClearTarget();
             e.targetedBy.Remove(gameObject.GetComponent<PlayerUnit>());
@@ -251,5 +313,31 @@ public class PlayerUnit : MonoBehaviour
             gameManager.supportUnits.Remove(gameObject);
         }
         Destroy(gameObject);
+    }
+
+    private void DisplayUpgrades()
+    {
+        upgrades.SetActive(!upgrades.active);
+    }
+
+    private void AddHp()
+    {
+        hp += 10;
+        maxHp += 10;
+    }
+
+    public void AddDamage()
+    {
+        damage += 1;
+    }
+
+    public void AddSpeed()
+    {
+        agent.speed += 1;
+    }
+
+    public void AddFireRate()
+    {
+        fireRate -= 0.2f;
     }
 }

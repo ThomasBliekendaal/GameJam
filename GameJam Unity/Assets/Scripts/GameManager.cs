@@ -4,6 +4,9 @@ using UnityEngine;
 
 public class GameManager : MonoBehaviour
 {
+    public GameObject victory;
+    public GameObject gameOver;
+
     public List<GameObject> endGoals = new List<GameObject>();
     public List<GameObject> meleeUnits = new List<GameObject>();
     public List<GameObject> rangedUnits = new List<GameObject>();
@@ -38,11 +41,11 @@ public class GameManager : MonoBehaviour
         playerUnitCount = meleeUnits.Count + rangedUnits.Count + supportUnits.Count;
         if(playerUnitCount <= 0)
         {
-            print("Game Over");
+            gameOver.SetActive(true);
         }
         else if (enemyUnits.Count <= 0)
         {
-            print("Next Level");
+            victory.SetActive(true);
         }
     }
 }

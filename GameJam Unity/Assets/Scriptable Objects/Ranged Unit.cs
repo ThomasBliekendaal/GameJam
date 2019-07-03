@@ -17,7 +17,6 @@ public class RangedUnit : Unit
 
     public override void AbilityTwo(GameObject self)
     {
-        Debug.Log("summon");
         foreach(Vector3 v in spawnOffsets)
         {
             Instantiate(minion, self.transform.position + v, self.transform.rotation);
