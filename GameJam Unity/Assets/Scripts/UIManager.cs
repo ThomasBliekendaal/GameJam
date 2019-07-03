@@ -66,16 +66,16 @@ public class UIManager : MonoBehaviour
             {
                 g.SetActive(true);
             }
-            foreach (PlayerUnit p in units)
-            {
-                p.upgrades.SetActive(false);
-            }
         }
         else
         {
             foreach (GameObject g in upgrades)
             {
                 g.SetActive(false);
+                foreach (PlayerUnit p in units)
+                {
+                    p.upgrades.SetActive(false);
+                }
             }
         }
         if(pausePanel != null && Input.GetButtonDown("Cancel"))

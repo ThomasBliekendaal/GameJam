@@ -23,6 +23,10 @@ public class PlayerUnit : MonoBehaviour
     public GameObject popUp;
     public Color red;
     public Color green;
+    public Text hpText;
+    public Text damageText;
+    public Text speedText;
+    public Text fireRateText;
 
     [Header("Abilities")]
     public float invulnarableTime;
@@ -114,6 +118,7 @@ public class PlayerUnit : MonoBehaviour
         {
             units.Add(g.GetComponent<PlayerUnit>());
         }
+        UpdateStatUI();
     }
 
     // Update is called once per frame
@@ -319,7 +324,10 @@ public class PlayerUnit : MonoBehaviour
 
     private void DisplayUpgrades()
     {
+        print("show up");
+        print(upgrades.active);
         upgrades.SetActive(!upgrades.active);
+        UpdateStatUI();
     }
 
     private void AddHp()
@@ -330,6 +338,7 @@ public class PlayerUnit : MonoBehaviour
             hp += 10;
             maxHp += 10;
         }
+        UpdateStatUI();
     }
 
     public void AddDamage()
@@ -339,6 +348,7 @@ public class PlayerUnit : MonoBehaviour
             gameManager.GetComponent<UIManager>().points -= 1;
             damage += 1;
         }
+        UpdateStatUI();
     }
 
     public void AddSpeed()
@@ -348,6 +358,7 @@ public class PlayerUnit : MonoBehaviour
             gameManager.GetComponent<UIManager>().points -= 1;
             agent.speed += 1;
         }
+        UpdateStatUI();
     }
 
     public void AddFireRate()
@@ -357,5 +368,14 @@ public class PlayerUnit : MonoBehaviour
             gameManager.GetComponent<UIManager>().points -= 1;
             fireRate -= 0.2f;
         }
+        UpdateStatUI();
+    }
+
+    public void UpdateStatUI()
+    {
+        hpText.text = maxHp.ToString();
+        damageText.text = damage.ToString();
+        speedText.text = agent.speed.ToString();
+        fireRateText.text = fireRate.ToString();
     }
 }
