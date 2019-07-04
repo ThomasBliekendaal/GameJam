@@ -35,6 +35,9 @@ public class PlayerUnit : MonoBehaviour
     public float damageMultiplier;
     public float damageBuffTimer;
 
+    [Header("Animation")]
+    private Animator anim;
+
     [Header("Data")]
     public GameObject target;
     public GameObject endGoal;
@@ -76,6 +79,7 @@ public class PlayerUnit : MonoBehaviour
         gameManager = GameObject.FindGameObjectWithTag("GameManager").GetComponent<GameManager>();
         invulnarableTime = 0;
         source = GetComponent<AudioSource>();
+        anim = GetComponent<Animator>();
     }
 
     void Start()
@@ -83,6 +87,7 @@ public class PlayerUnit : MonoBehaviour
         rangeTrigger.radius = range;
         endGoal = gameManager.endGoals[Random.Range(0, gameManager.endGoals.Count)];
         agent.destination = endGoal.transform.position;
+        SetAnim("Walking");
         if(displayUpgrades != null)
         {
             displayUpgrades.onClick.AddListener(DisplayUpgrades);
@@ -142,6 +147,7 @@ public class PlayerUnit : MonoBehaviour
         }
         else
         {
+            SetAnim("Walking");
             agent.destination = endGoal.transform.position;
         }
 
@@ -190,6 +196,7 @@ public class PlayerUnit : MonoBehaviour
 
     public void Attack()
     {
+        SetAnim("Attacking");
         if (gameObject.tag != "Support")
         {
             if (damageBuff == false)
@@ -253,7 +260,6 @@ public class PlayerUnit : MonoBehaviour
             source.PlayOneShot(type.buttonPress);
             if (ability == 1)
             {
-                print("call abil");
                 type.AbilityOne(gameObject);
                 source.PlayOneShot(type.abilityOneAudio);
                 cooldownTimer = abilityCooldownOne;
@@ -278,6 +284,7 @@ public class PlayerUnit : MonoBehaviour
 
     public void LoseHP(int damage)
     {
+        SetAnim("Flinching");
         GameObject g = Instantiate(popUp, transform.position + new Vector3(Random.Range(-0.5f, 0.5f), 1, 0), Quaternion.identity);
         if (damage > 0)
         {
@@ -308,7 +315,8 @@ public class PlayerUnit : MonoBehaviour
 
     public void Death()
     {
-        if(type.name == "MeleeUnit")
+        SetAnim("Dying");
+        if (type.name == "MeleeUnit")
         {
             gameManager.meleeUnits.Remove(gameObject);
         }
@@ -396,5 +404,44 @@ public class PlayerUnit : MonoBehaviour
         damageText.text = damage.ToString();
         speedText.text = agent.speed.ToString();
         fireRateText.text = fireRate.ToString();
+    }
+
+    public void SetAnim(string animation)
+    {
+        anim.SetBool("isIdle", false);
+        anim.SetBool("isWalking", false);
+        anim.SetBool("isAttacking", false);
+        anim.SetBool("isFlinching", false);
+        anim.SetBool("isSpinning", false);
+        anim.SetBool("isBuffed", false);
+        anim.SetBool("isDying", false);
+        if (animation == "Idle")
+        {
+            anim.SetBool("isIdle", true);
+        }
+        if (animation == "Walking")
+        {
+            anim.SetBool("isWalking", true);
+        }
+        if (animation == "Attacking")
+        {
+            anim.SetBool("isAttacking", true);
+        }
+        if (animation == "Flinching")
+        {
+            anim.SetBool("isFlinching", true);
+        }
+        if (animation == "Spinning")
+        {
+            anim.SetBool("isSpinning", true);
+        }
+        if (animation == "Buffed")
+        {
+            anim.SetBool("isBuffed", true);
+        }
+        if (animation == "Dying")
+        {
+            anim.SetBool("isDying", true);
+        }
     }
 }

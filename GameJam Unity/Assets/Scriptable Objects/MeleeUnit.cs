@@ -11,10 +11,12 @@ public class MeleeUnit : Unit
     public override void AbilityOne(GameObject self)
     {
         self.GetComponent<PlayerUnit>().invulnarableTime = invulnerableTime;
+        self.GetComponent<PlayerUnit>().SetAnim("Buffed");
     }
 
     public override void AbilityTwo(GameObject self)
     {
         self.GetComponent<PlayerUnit>().spinTime = spinTime;
+        self.GetComponent<PlayerUnit>().SetAnim("Spinning");
     }
 }
