@@ -40,18 +40,19 @@ public class PlayerUnit : MonoBehaviour
     public GameObject endGoal;
     private NavMeshAgent agent;
     private GameManager gameManager;
-    [SerializeField]  private float fireTimer;
+    private float fireTimer;
     public List<EnemyUnit> enemiesInRange = new List<EnemyUnit>();
     public List<EnemyUnit> targetedBy = new List<EnemyUnit>();
     public List<PlayerUnit> units = new List<PlayerUnit>();
     private PlayerUnit healTarget;
     private AudioSource source;
 
-    [SerializeField] private int hp;
+    private int hp;
     private int maxHp;
-    [SerializeField] private int damage;
+    private int damage;
     private float range;
-    [SerializeField]  private float fireRate;
+    private float fireRate;
+    private float hitDelay;
     private float abilityCooldownOne;
     private float abilityCooldownTwo;
     private float cooldownTimer;
@@ -66,6 +67,7 @@ public class PlayerUnit : MonoBehaviour
         damage = type.damage;
         range = type.range;
         fireRate = type.fireRate;
+        hitDelay = type.hitDelay;
         abilityCooldownOne = type.abilityCooldownOne;
         abilityCooldownTwo = type.abilityCooldownTwo;
         cooldownTimer = 0;
@@ -133,8 +135,17 @@ public class PlayerUnit : MonoBehaviour
             fireTimer -= Time.deltaTime;
             if(fireTimer <= 0 && spinTime <= 0)
             {
-                Attack();
-                source.PlayOneShot(type.attack);
+                
+                if (type.name != "MeleeUnit")
+                {
+                    source.PlayOneShot(type.cast);
+                    CastDelay(hitDelay);
+                }
+                else
+                {
+                    source.PlayOneShot(type.attack);
+                    Attack();
+                }
             }
         }
         else
@@ -387,5 +398,12 @@ public class PlayerUnit : MonoBehaviour
         damageText.text = damage.ToString();
         speedText.text = agent.speed.ToString();
         fireRateText.text = fireRate.ToString();
+    }
+
+    private IEnumerator CastDelay(float wait)
+    {
+        yield return new WaitForSeconds(wait);
+        source.PlayOneShot(type.attack);
+        Attack();
     }
 }

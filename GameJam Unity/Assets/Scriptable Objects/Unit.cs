@@ -9,10 +9,12 @@ public class Unit : ScriptableObject
     public int damage;
     public float range;
     public float fireRate;
+    public float hitDelay;
     public float abilityCooldownOne;
     public float abilityCooldownTwo;
 
     public AudioClip attack;
+    public AudioClip cast;
     public AudioClip getHit;
     public AudioClip death;
     public AudioClip getHeal;

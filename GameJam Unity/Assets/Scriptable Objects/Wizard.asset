@@ -16,9 +16,11 @@ MonoBehaviour:
   damage: 5
   range: 15
   fireRate: 3
+  hitDelay: 0.5
   abilityCooldownOne: 10
   abilityCooldownTwo: 10
   attack: {fileID: 8300000, guid: db3ecfd0bef554e4d9bb8d4920fff1b3, type: 3}
+  cast: {fileID: 8300000, guid: 088edb19a234e374993396361a1e3a67, type: 3}
   getHit: {fileID: 8300000, guid: 72cbeaa5239b86248b33100faef8d068, type: 3}
   death: {fileID: 8300000, guid: 3e901da816e1dbe428c50b0ac26598e5, type: 3}
   getHeal: {fileID: 8300000, guid: 78fef752ada0b2347a85f52817ee086b, type: 3}
