@@ -1341,6 +1341,7 @@ GameObject:
   - component: {fileID: 433469789}
   - component: {fileID: 433469788}
   - component: {fileID: 433469787}
+  - component: {fileID: 433469790}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -1413,6 +1414,66 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 10.601001, y: -0.277, z: -0.019000001}
+--- !u!114 &433469790
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 433469786}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 948f4100a11a5c24981795d21301da5c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  volumeTrigger: {fileID: 433469789}
+  volumeLayer:
+    serializedVersion: 2
+    m_Bits: 0
+  stopNaNPropagation: 1
+  finalBlitToCameraTarget: 0
+  antialiasingMode: 3
+  temporalAntialiasing:
+    jitterSpread: 0.75
+    sharpness: 0.25
+    stationaryBlending: 0.95
+    motionBlending: 0.85
+  subpixelMorphologicalAntialiasing:
+    quality: 2
+  fastApproximateAntialiasing:
+    fastMode: 0
+    keepAlpha: 0
+  fog:
+    enabled: 1
+    excludeSkybox: 1
+  debugLayer:
+    lightMeter:
+      width: 512
+      height: 256
+      showCurves: 1
+    histogram:
+      width: 512
+      height: 256
+      channel: 3
+    waveform:
+      exposure: 0.12
+      height: 256
+    vectorscope:
+      size: 256
+      exposure: 0.12
+    overlaySettings:
+      linearDepth: 0
+      motionColorIntensity: 4
+      motionGridSize: 64
+      colorBlindnessType: 0
+      colorBlindnessStrength: 1
+  m_Resources: {fileID: 11400000, guid: d82512f9c8e5d4a4d938b575d47f88d4, type: 2}
+  m_ShowToolkit: 0
+  m_ShowCustomSorter: 0
+  breakBeforeColorGrading: 0
+  m_BeforeTransparentBundles: []
+  m_BeforeStackBundles: []
+  m_AfterStackBundles: []
 --- !u!4 &468765136 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 8175243409514452870, guid: ef4814e51470dc84593e4ab5f9b7039a,
@@ -1527,9 +1588,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 55945ab6f941d3b43a6c591d233c3fa4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxHeight: 0.002
-  minHeight: -0.002
-  timeUntilMove: 10
+  maxHeight: 0.005
+  minHeight: -0.005
+  timeUntilMove: 3
   timePassed: 0
 --- !u!1001 &509160907
 PrefabInstance:
@@ -2777,9 +2838,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 55945ab6f941d3b43a6c591d233c3fa4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxHeight: 0.002
-  minHeight: -0.002
-  timeUntilMove: 10
+  maxHeight: 0.005
+  minHeight: -0.005
+  timeUntilMove: 3
   timePassed: 0
 --- !u!1001 &812698017
 PrefabInstance:
@@ -3069,9 +3130,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 55945ab6f941d3b43a6c591d233c3fa4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxHeight: 0.002
-  minHeight: -0.002
-  timeUntilMove: 10
+  maxHeight: 0.005
+  minHeight: -0.005
+  timeUntilMove: 3
   timePassed: 0
 --- !u!1001 &931177546
 PrefabInstance:
@@ -3181,9 +3242,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 55945ab6f941d3b43a6c591d233c3fa4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxHeight: 0.002
-  minHeight: -0.002
-  timeUntilMove: 10
+  maxHeight: 0.005
+  minHeight: -0.005
+  timeUntilMove: 3
   timePassed: 0
 --- !u!4 &981186249 stripped
 Transform:
@@ -3299,9 +3360,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 55945ab6f941d3b43a6c591d233c3fa4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxHeight: 0.002
-  minHeight: -0.002
-  timeUntilMove: 10
+  maxHeight: 0.005
+  minHeight: -0.005
+  timeUntilMove: 3
   timePassed: 0
 --- !u!1001 &1066809247
 PrefabInstance:
@@ -3411,9 +3472,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 55945ab6f941d3b43a6c591d233c3fa4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxHeight: 0.002
-  minHeight: -0.002
-  timeUntilMove: 10
+  maxHeight: 0.005
+  minHeight: -0.005
+  timeUntilMove: 3
   timePassed: 0
 --- !u!1001 &1073823324
 PrefabInstance:
@@ -3877,9 +3938,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 55945ab6f941d3b43a6c591d233c3fa4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxHeight: 0.002
-  minHeight: -0.002
-  timeUntilMove: 10
+  maxHeight: 0.005
+  minHeight: -0.005
+  timeUntilMove: 3
   timePassed: 0
 --- !u!1001 &1305489339
 PrefabInstance:
@@ -4658,9 +4719,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 55945ab6f941d3b43a6c591d233c3fa4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxHeight: 0.002
-  minHeight: -0.002
-  timeUntilMove: 10
+  maxHeight: 0.005
+  minHeight: -0.005
+  timeUntilMove: 3
   timePassed: 0
 --- !u!1001 &1387736605
 PrefabInstance:
@@ -4935,9 +4996,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 55945ab6f941d3b43a6c591d233c3fa4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxHeight: 0.002
-  minHeight: -0.002
-  timeUntilMove: 10
+  maxHeight: 0.005
+  minHeight: -0.005
+  timeUntilMove: 3
   timePassed: 0
 --- !u!1001 &1469024819
 PrefabInstance:
@@ -5407,9 +5468,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 55945ab6f941d3b43a6c591d233c3fa4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxHeight: 0.002
-  minHeight: -0.002
-  timeUntilMove: 10
+  maxHeight: 0.005
+  minHeight: -0.005
+  timeUntilMove: 3
   timePassed: 0
 --- !u!4 &1655498590 stripped
 Transform:
@@ -5885,9 +5946,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 55945ab6f941d3b43a6c591d233c3fa4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxHeight: 0.002
-  minHeight: -0.002
-  timeUntilMove: 10
+  maxHeight: 0.005
+  minHeight: -0.005
+  timeUntilMove: 3
   timePassed: 0
 --- !u!1001 &1727698486
 PrefabInstance:
@@ -6261,9 +6322,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 55945ab6f941d3b43a6c591d233c3fa4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxHeight: 0.002
-  minHeight: -0.002
-  timeUntilMove: 10
+  maxHeight: 0.005
+  minHeight: -0.005
+  timeUntilMove: 3
   timePassed: 0
 --- !u!1001 &1935669153
 PrefabInstance:
@@ -6723,9 +6784,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 55945ab6f941d3b43a6c591d233c3fa4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxHeight: 0.002
-  minHeight: -0.002
-  timeUntilMove: 10
+  maxHeight: 0.005
+  minHeight: -0.005
+  timeUntilMove: 3
   timePassed: 0
 --- !u!1001 &2083198860
 PrefabInstance:
