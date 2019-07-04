@@ -151,7 +151,7 @@ ModelImporter:
       takeName: Character Body|Idle
       internalID: 6856355654994018935
       firstFrame: 0
-      lastFrame: 38
+      lastFrame: 30
       wrapMode: 0
       orientationOffsetY: 0
       level: 0
@@ -180,7 +180,7 @@ ModelImporter:
       takeName: Character Body|Knight Attack
       internalID: -3924952734478830597
       firstFrame: 0
-      lastFrame: 78
+      lastFrame: 68.5
       wrapMode: 0
       orientationOffsetY: 0
       level: 0
