@@ -16,15 +16,19 @@ MonoBehaviour:
   damage: 3
   range: 6
   fireRate: 2
+  hitDelay: 0.5
   abilityCooldownOne: 10
   abilityCooldownTwo: 10
   attack: {fileID: 8300000, guid: 49edd54ddac743145a78775bd7da76b2, type: 3}
+  cast: {fileID: 8300000, guid: a9a3b530a24e0c94ead92a4490123266, type: 3}
   getHit: {fileID: 8300000, guid: 72cbeaa5239b86248b33100faef8d068, type: 3}
   death: {fileID: 8300000, guid: 3e901da816e1dbe428c50b0ac26598e5, type: 3}
   getHeal: {fileID: 8300000, guid: 78fef752ada0b2347a85f52817ee086b, type: 3}
   abilityOneAudio: {fileID: 8300000, guid: 96c1de96734e9954e8080607f6f0c294, type: 3}
   abilityTwoAudio: {fileID: 8300000, guid: 9f12f128de7b3094698e254614d482c1, type: 3}
   healAudio: {fileID: 8300000, guid: bd5135024a573884695f3c137171ebda, type: 3}
+  buttonPress: {fileID: 8300000, guid: c71af1c4fa8dbae49b8743057a5e5076, type: 3}
+  buttonFail: {fileID: 8300000, guid: 67ca6ef4730ade7419355194b3de34ae, type: 3}
   healAmount: 10
   damageMultiplier: 2
   damageBuffTime: 10

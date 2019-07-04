@@ -9,16 +9,20 @@ public class Unit : ScriptableObject
     public int damage;
     public float range;
     public float fireRate;
+    public float hitDelay;
     public float abilityCooldownOne;
     public float abilityCooldownTwo;
 
     public AudioClip attack;
+    public AudioClip cast;
     public AudioClip getHit;
     public AudioClip death;
     public AudioClip getHeal;
     public AudioClip abilityOneAudio;
     public AudioClip abilityTwoAudio;
     public AudioClip healAudio;
+    public AudioClip buttonPress;
+    public AudioClip buttonFail;
 
     public virtual void AbilityOne(GameObject self)
     {

@@ -17,3 +17,5 @@ MonoBehaviour:
   attackRange: 2
   detectRange: 10
   fireRate: 1
+  death: {fileID: 8300000, guid: 8059269b8bedf5241bf4eef637878fe2, type: 3}
+  getDamage: {fileID: 8300000, guid: dc0e9ea96e2db5d499d3986fc4c53bbc, type: 3}

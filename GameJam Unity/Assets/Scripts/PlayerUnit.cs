@@ -40,18 +40,20 @@ public class PlayerUnit : MonoBehaviour
     public GameObject endGoal;
     private NavMeshAgent agent;
     private GameManager gameManager;
-    [SerializeField]  private float fireTimer;
+    private float fireTimer;
+    private float hitTimer;
     public List<EnemyUnit> enemiesInRange = new List<EnemyUnit>();
     public List<EnemyUnit> targetedBy = new List<EnemyUnit>();
     public List<PlayerUnit> units = new List<PlayerUnit>();
     private PlayerUnit healTarget;
     private AudioSource source;
 
-    [SerializeField] private int hp;
+    private int hp;
     private int maxHp;
-    [SerializeField] private int damage;
+    private int damage;
     private float range;
-    [SerializeField]  private float fireRate;
+    private float fireRate;
+    private float hitDelay;
     private float abilityCooldownOne;
     private float abilityCooldownTwo;
     private float cooldownTimer;
@@ -66,6 +68,7 @@ public class PlayerUnit : MonoBehaviour
         damage = type.damage;
         range = type.range;
         fireRate = type.fireRate;
+        hitDelay = type.hitDelay;
         abilityCooldownOne = type.abilityCooldownOne;
         abilityCooldownTwo = type.abilityCooldownTwo;
         cooldownTimer = 0;
@@ -126,15 +129,15 @@ public class PlayerUnit : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if(target != null)
+        if (target != null)
         {
             agent.destination = gameObject.transform.position;
             transform.LookAt(target.transform.position);
             fireTimer -= Time.deltaTime;
             if(fireTimer <= 0 && spinTime <= 0)
             {
-                Attack();
                 source.PlayOneShot(type.attack);
+                Attack();
             }
         }
         else
@@ -193,10 +196,8 @@ public class PlayerUnit : MonoBehaviour
             {
                 if (fireTimer <= 0 && spinTime <= 0)
                 {
-                    print("basic one");
                     target.GetComponent<EnemyUnit>().LoseHP(damage);
                     fireTimer = fireRate;
-                    print(fireTimer + "/" + fireRate);
                 }
             }
             else
@@ -218,13 +219,16 @@ public class PlayerUnit : MonoBehaviour
         {
             foreach(PlayerUnit p in units)
             {
-                if(healTarget == null && p.hp < p.maxHp)
+                if (healTarget == null && p.hp < p.maxHp)
                 {
                     healTarget = p;
                 }
-                else if((p.maxHp - p.hp) > (healTarget.maxHp - healTarget.hp))
+                else if(healTarget != null)
                 {
-                    healTarget = p;
+                    if((p.maxHp - p.hp) > (healTarget.maxHp - healTarget.hp))
+                    {
+                        healTarget = p;
+                    }
                 }
             }
             if (healTarget != null)
@@ -246,6 +250,7 @@ public class PlayerUnit : MonoBehaviour
     {
         if (cooldownTimer <= 0)
         {
+            source.PlayOneShot(type.buttonPress);
             if (ability == 1)
             {
                 print("call abil");
@@ -259,6 +264,10 @@ public class PlayerUnit : MonoBehaviour
                 source.PlayOneShot(type.abilityTwoAudio);
                 cooldownTimer = abilityCooldownTwo;
             }
+        }
+        else
+        {
+            source.PlayOneShot(type.buttonFail);
         }
     }
 
