@@ -141,6 +141,7 @@ public class PlayerUnit : MonoBehaviour
             fireTimer -= Time.deltaTime;
             if(fireTimer <= 0 && spinTime <= 0)
             {
+                anim.SetBool("isSpinning", false);
                 source.PlayOneShot(type.attack);
                 Attack();
             }
@@ -171,6 +172,7 @@ public class PlayerUnit : MonoBehaviour
         }
         if(target == null && other.tag == "Enemy")
         {
+            SetAnim("Walking");
             target = other.gameObject;
             other.gameObject.GetComponent<EnemyUnit>().targetedBy.Add(this.gameObject.GetComponent<PlayerUnit>());
         }
@@ -284,23 +286,25 @@ public class PlayerUnit : MonoBehaviour
 
     public void LoseHP(int damage)
     {
-        SetAnim("Flinching");
-        GameObject g = Instantiate(popUp, transform.position + new Vector3(Random.Range(-0.5f, 0.5f), 1, 0), Quaternion.identity);
-        if (damage > 0)
-        {
-            g.GetComponent<TextMeshProUGUI>().color = red;
-            g.GetComponent<PopUp>().text = "-" + damage.ToString();
-            source.PlayOneShot(type.getHit);
-        }
-        else if (damage < 0)
-        {
-            g.GetComponent<TextMeshProUGUI>().color = green;
-            g.GetComponent<PopUp>().text = "+" + (-1 * damage).ToString();
-            source.PlayOneShot(type.getHeal);
-        }
-        g.transform.position = transform.position + new Vector3(0, 1, 0);
+        //SetAnim("Flinching");
         if (invulnarableTime <= 0)
         {
+
+            GameObject g = Instantiate(popUp, transform.position + new Vector3(Random.Range(-0.5f, 0.5f), 1, 0), Quaternion.identity);
+            if (damage > 0)
+            {
+                g.GetComponent<TextMeshProUGUI>().color = red;
+                g.GetComponent<PopUp>().text = "-" + damage.ToString();
+                source.PlayOneShot(type.getHit);
+            }
+            else if (damage < 0)
+            {
+                g.GetComponent<TextMeshProUGUI>().color = green;
+                g.GetComponent<PopUp>().text = "+" + (-1 * damage).ToString();
+                source.PlayOneShot(type.getHeal);
+            }
+            g.transform.position = transform.position + new Vector3(0, 1, 0);
+
             hp -= damage;
             if (hp <= 0)
             {
@@ -390,7 +394,7 @@ public class PlayerUnit : MonoBehaviour
 
     public void AddFireRate()
     {
-        if (gameManager.GetComponent<UIManager>().points > 0)
+        if (gameManager.GetComponent<UIManager>().points > 0 && fireRate > 0.3)
         {
             gameManager.GetComponent<UIManager>().points -= 1;
             fireRate -= 0.2f;
@@ -408,40 +412,40 @@ public class PlayerUnit : MonoBehaviour
 
     public void SetAnim(string animation)
     {
-        anim.SetBool("isIdle", false);
-        anim.SetBool("isWalking", false);
-        anim.SetBool("isAttacking", false);
-        anim.SetBool("isFlinching", false);
-        anim.SetBool("isSpinning", false);
-        anim.SetBool("isBuffed", false);
-        anim.SetBool("isDying", false);
-        if (animation == "Idle")
-        {
-            anim.SetBool("isIdle", true);
-        }
-        if (animation == "Walking")
-        {
-            anim.SetBool("isWalking", true);
-        }
-        if (animation == "Attacking")
-        {
-            anim.SetBool("isAttacking", true);
-        }
-        if (animation == "Flinching")
-        {
-            anim.SetBool("isFlinching", true);
-        }
-        if (animation == "Spinning")
-        {
-            anim.SetBool("isSpinning", true);
-        }
-        if (animation == "Buffed")
-        {
-            anim.SetBool("isBuffed", true);
-        }
-        if (animation == "Dying")
-        {
-            anim.SetBool("isDying", true);
-        }
+        print(animation);
+            anim.SetBool("isIdle", false);
+            anim.SetBool("isWalking", false);
+            anim.SetBool("isAttacking", false);
+            anim.SetBool("isFlinching", false);
+            anim.SetBool("isBuffed", false);
+            anim.SetBool("isDying", false);
+            if (animation == "Idle")
+            {
+                anim.SetBool("isIdle", true);
+            }
+            if (animation == "Walking")
+            {
+                anim.SetBool("isWalking", true);
+            }
+            if (animation == "Attacking")
+            {
+                anim.SetBool("isAttacking", true);
+            }
+            if (animation == "Flinching")
+            {
+                anim.SetBool("isFlinching", true);
+            }
+            if (animation == "Spinning")
+            {
+                anim.SetBool("isSpinning", true);
+            }
+            if (animation == "Buffed")
+            {
+                anim.SetBool("isBuffed", true);
+            }
+            if (animation == "Dying")
+            {
+                anim.SetBool("isDying", true);
+            }
     }
 }
