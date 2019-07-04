@@ -37,19 +37,21 @@ public class PlayerUnit : MonoBehaviour
 
     [Header("Animation")]
     private Animator anim;
+    private IEnumerator coroutine;
 
     [Header("Data")]
     public GameObject target;
     public GameObject endGoal;
     private NavMeshAgent agent;
     private GameManager gameManager;
-    private float fireTimer;
+    [SerializeField] private float fireTimer;
     private float hitTimer;
     public List<EnemyUnit> enemiesInRange = new List<EnemyUnit>();
     public List<EnemyUnit> targetedBy = new List<EnemyUnit>();
     public List<PlayerUnit> units = new List<PlayerUnit>();
     private PlayerUnit healTarget;
     private AudioSource source;
+    private GameObject particles;
 
     private int hp;
     private int maxHp;
@@ -66,6 +68,7 @@ public class PlayerUnit : MonoBehaviour
 
     private void Awake()
     {
+        coroutine = Attacking();
         hp = type.hp;
         maxHp = type.hp;
         damage = type.damage;
@@ -80,6 +83,7 @@ public class PlayerUnit : MonoBehaviour
         invulnarableTime = 0;
         source = GetComponent<AudioSource>();
         anim = GetComponent<Animator>();
+        particles = gameObject.GetComponentInChildren<ParticleSystem>().gameObject;
     }
 
     void Start()
@@ -129,6 +133,8 @@ public class PlayerUnit : MonoBehaviour
             units.Add(g.GetComponent<PlayerUnit>());
         }
         UpdateStatUI();
+        particles.SetActive(false);
+        gameObject.GetComponent<ParticleBaker>().UpdateMesh(false);
     }
 
     // Update is called once per frame
@@ -141,9 +147,12 @@ public class PlayerUnit : MonoBehaviour
             fireTimer -= Time.deltaTime;
             if(fireTimer <= 0 && spinTime <= 0)
             {
-                anim.SetBool("isSpinning", false);
-                source.PlayOneShot(type.attack);
-                Attack();
+                coroutine = Attacking();
+                SetAnim("Attacking");
+                //source.PlayOneShot(type.attack);
+                fireTimer = fireRate;
+                //Attack();
+                StartCoroutine(coroutine);
             }
         }
         else
@@ -159,7 +168,14 @@ public class PlayerUnit : MonoBehaviour
 
         if(invulnarableTime > 0)
         {
+            particles.SetActive(true);
+            gameObject.GetComponent<ParticleBaker>().UpdateMesh(true);
             invulnarableTime -= Time.deltaTime;
+        }
+        else
+        {
+            particles.SetActive(false);
+            gameObject.GetComponent<ParticleBaker>().UpdateMesh(false);
         }
     }
 
@@ -182,7 +198,6 @@ public class PlayerUnit : MonoBehaviour
     {
         if(spinTime > 0 && other.tag == "Enemy" && fireTimer <= 0)
         {
-            print("SPIN TO WIN");
             if(damageBuff == true)
             {
                 other.GetComponent<EnemyUnit>().LoseHP(Mathf.CeilToInt(damage * damageMultiplier));
@@ -203,10 +218,10 @@ public class PlayerUnit : MonoBehaviour
         {
             if (damageBuff == false)
             {
-                if (fireTimer <= 0 && spinTime <= 0)
+                if (spinTime <= 0)
                 {
                     target.GetComponent<EnemyUnit>().LoseHP(damage);
-                    fireTimer = fireRate;
+                    //fireTimer = fireRate;
                 }
             }
             else
@@ -214,7 +229,7 @@ public class PlayerUnit : MonoBehaviour
                 if (fireTimer <= 0 && spinTime <= 0)
                 {
                     target.GetComponent<EnemyUnit>().LoseHP(Mathf.CeilToInt(damage * damageMultiplier));
-                    fireTimer = fireRate;
+                    //fireTimer = fireRate;
                 }
 
                 damageBuffTimer -= Time.deltaTime;
@@ -245,12 +260,12 @@ public class PlayerUnit : MonoBehaviour
                 healTarget.LoseHP(-damage);
                 healTarget = null;
                 source.PlayOneShot(type.healAudio);
-                fireTimer = fireRate;
+                //fireTimer = fireRate;
             }
             else
             {
                 target.GetComponent<EnemyUnit>().LoseHP(damage);
-                fireTimer = fireRate;
+                //fireTimer = fireRate;
             }
         }
     }
@@ -355,8 +370,6 @@ public class PlayerUnit : MonoBehaviour
 
     private void DisplayUpgrades()
     {
-        print("show up");
-        print(upgrades.active);
         upgrades.SetActive(!upgrades.active);
         UpdateStatUI();
     }
@@ -412,40 +425,46 @@ public class PlayerUnit : MonoBehaviour
 
     public void SetAnim(string animation)
     {
-        print(animation);
-            anim.SetBool("isIdle", false);
-            anim.SetBool("isWalking", false);
-            anim.SetBool("isAttacking", false);
-            anim.SetBool("isFlinching", false);
-            anim.SetBool("isBuffed", false);
-            anim.SetBool("isDying", false);
-            if (animation == "Idle")
-            {
-                anim.SetBool("isIdle", true);
-            }
-            if (animation == "Walking")
-            {
-                anim.SetBool("isWalking", true);
-            }
-            if (animation == "Attacking")
-            {
-                anim.SetBool("isAttacking", true);
-            }
-            if (animation == "Flinching")
-            {
-                anim.SetBool("isFlinching", true);
-            }
-            if (animation == "Spinning")
-            {
-                anim.SetBool("isSpinning", true);
-            }
-            if (animation == "Buffed")
-            {
-                anim.SetBool("isBuffed", true);
-            }
-            if (animation == "Dying")
-            {
-                anim.SetBool("isDying", true);
-            }
+        anim.SetBool("isIdle", false);
+        anim.SetBool("isWalking", false);
+        anim.SetBool("isAttacking", false);
+        anim.SetBool("isFlinching", false);
+        anim.SetBool("isBuffed", false);
+        anim.SetBool("isDying", false);
+        if (animation == "Idle")
+        {
+            anim.SetBool("isIdle", true);
+        }
+        if (animation == "Walking")
+        {
+            anim.SetBool("isWalking", true);
+        }
+        if (animation == "Attacking")
+        {
+            anim.SetBool("isAttacking", true);
+        }
+        if (animation == "Flinching")
+        {
+            anim.SetBool("isFlinching", true);
+        }
+        if (animation == "Spinning")
+        {
+            anim.SetBool("isSpinning", true);
+        }
+        if (animation == "Buffed")
+        {
+            anim.SetBool("isBuffed", true);
+        }
+        if (animation == "Dying")
+        {
+            anim.SetBool("isDying", true);
+        }
+    }
+
+    private IEnumerator Attacking()
+    {
+        source.PlayOneShot(type.attack);
+        Attack();
+        yield return new WaitForSeconds(68 * Time.deltaTime);
     }
 }

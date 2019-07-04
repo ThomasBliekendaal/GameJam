@@ -30,7 +30,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 4878712200091229987}
-  m_RootOrder: 9
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: -90, y: 0, z: 0}
 --- !u!198 &976268883
 ParticleSystem:
@@ -10272,7 +10272,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 4878712200091229987}
-  m_RootOrder: 1
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!137 &543290574240191495
 SkinnedMeshRenderer:
@@ -12184,7 +12184,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 4878712200091229987}
-  m_RootOrder: 6
+  m_RootOrder: 7
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!137 &1274299741879999989
 SkinnedMeshRenderer:
@@ -14427,7 +14427,7 @@ Transform:
   - {fileID: 9047488855488347242}
   - {fileID: 3324234141267592478}
   m_Father: {fileID: 4878712200091229987}
-  m_RootOrder: 2
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &3884495559858643109
 GameObject:
@@ -15364,7 +15364,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 4878712200091229987}
-  m_RootOrder: 4
+  m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!137 &8862796183252019534
 SkinnedMeshRenderer:
@@ -15754,7 +15754,7 @@ Transform:
   m_LocalScale: {x: 1.3662804, y: 1.3662807, z: 1.36628}
   m_Children: []
   m_Father: {fileID: 4878712200091229987}
-  m_RootOrder: 3
+  m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!137 &2736013016167507786
 SkinnedMeshRenderer:
@@ -18533,7 +18533,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 4878712200091229987}
-  m_RootOrder: 8
+  m_RootOrder: 9
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!137 &6323862294277200674
 SkinnedMeshRenderer:
@@ -19489,7 +19489,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 4878712200091229987}
-  m_RootOrder: 0
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!137 &2655844035270215926
 SkinnedMeshRenderer:
@@ -19786,7 +19786,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 4878712200091229987}
-  m_RootOrder: 5
+  m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!137 &4378455338851455467
 SkinnedMeshRenderer:
@@ -20587,6 +20587,7 @@ Transform:
   m_LocalPosition: {x: -1.1070791, y: 0.05, z: -5.4533625}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
+  - {fileID: 976268881}
   - {fileID: 8362929628263404665}
   - {fileID: 9098684516890301450}
   - {fileID: 1877549645553307842}
@@ -20596,7 +20597,6 @@ Transform:
   - {fileID: 1507963276541107974}
   - {fileID: 1820271077020616255}
   - {fileID: 7412654062012452588}
-  - {fileID: 976268881}
   - {fileID: 2682229675527975682}
   m_Father: {fileID: 0}
   m_RootOrder: 0
@@ -20818,7 +20818,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 4878712200091229987}
-  m_RootOrder: 7
+  m_RootOrder: 8
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!137 &1928373894152762517
 SkinnedMeshRenderer:
@@ -21691,11 +21691,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 4878712200091229987}
     m_Modifications:
-    - target: {fileID: 4535933573450214040, guid: 81e54bc9b8cd3934ba4615d528a4838b,
-        type: 3}
-      propertyPath: m_Name
-      value: WalkDust
-      objectReference: {fileID: 0}
     - target: {fileID: 8145132152266572943, guid: 81e54bc9b8cd3934ba4615d528a4838b,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -21750,6 +21745,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4535933573450214040, guid: 81e54bc9b8cd3934ba4615d528a4838b,
+        type: 3}
+      propertyPath: m_Name
+      value: WalkDust
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 81e54bc9b8cd3934ba4615d528a4838b, type: 3}

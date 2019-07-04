@@ -109,6 +109,7 @@ public class EnemyUnit : MonoBehaviour
 
     public void LoseHP(int i)
     {
+        print("damage");
         source.PlayOneShot(type.getDamage);
         GameObject g = Instantiate(popUp, transform.position + new Vector3(Random.Range(-0.5f, 0.5f), 1, 0), Quaternion.identity);
         g.GetComponent<TextMeshProUGUI>().color = red;
@@ -165,7 +166,7 @@ public class EnemyUnit : MonoBehaviour
         }
         else
         {
-            Debug.Log("No targets");
+            
         }
         if(target != null)
         {
