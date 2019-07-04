@@ -83,7 +83,10 @@ public class PlayerUnit : MonoBehaviour
         invulnarableTime = 0;
         source = GetComponent<AudioSource>();
         anim = GetComponent<Animator>();
-        particles = gameObject.GetComponentInChildren<ParticleSystem>().gameObject;
+        if(gameObject.tag == "Melee")
+        {
+            particles = gameObject.GetComponentInChildren<ParticleSystem>().gameObject;
+        }
     }
 
     void Start()
@@ -133,8 +136,11 @@ public class PlayerUnit : MonoBehaviour
             units.Add(g.GetComponent<PlayerUnit>());
         }
         UpdateStatUI();
-        particles.SetActive(false);
-        gameObject.GetComponent<ParticleBaker>().UpdateMesh(false);
+        if(particles != null)
+        {
+            particles.SetActive(false);
+            gameObject.GetComponent<ParticleBaker>().UpdateMesh(false);
+        }
     }
 
     // Update is called once per frame
@@ -168,14 +174,20 @@ public class PlayerUnit : MonoBehaviour
 
         if(invulnarableTime > 0)
         {
-            particles.SetActive(true);
-            gameObject.GetComponent<ParticleBaker>().UpdateMesh(true);
+            if(particles != null)
+            {
+                particles.SetActive(true);
+                gameObject.GetComponent<ParticleBaker>().UpdateMesh(true);
+            }
             invulnarableTime -= Time.deltaTime;
         }
         else
         {
-            particles.SetActive(false);
-            gameObject.GetComponent<ParticleBaker>().UpdateMesh(false);
+            if(particles != null)
+            {
+                particles.SetActive(false);
+                gameObject.GetComponent<ParticleBaker>().UpdateMesh(false);
+            }
         }
     }
 
