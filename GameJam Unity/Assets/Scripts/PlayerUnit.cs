@@ -219,7 +219,9 @@ public class PlayerUnit : MonoBehaviour
         {
             foreach(PlayerUnit p in units)
             {
-                if(healTarget == null && p.hp < p.maxHp)
+                print(p);
+                print(healTarget);
+                if (healTarget == null && p.hp < p.maxHp)
                 {
                     healTarget = p;
                 }
@@ -227,6 +229,8 @@ public class PlayerUnit : MonoBehaviour
                 {
                     healTarget = p;
                 }
+                print(p);
+                print(healTarget);
             }
             if (healTarget != null)
             {
