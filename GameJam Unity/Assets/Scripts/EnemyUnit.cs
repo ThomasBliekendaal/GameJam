@@ -20,8 +20,9 @@ public class EnemyUnit : MonoBehaviour
     private GameManager gameManager;
     private NavMeshAgent agent;
     private GameObject target;
+    private AudioSource source;
 
-    [SerializeField] private int hp;
+    private int hp;
     private int damage;
     private float attackRange;
     private float detectRange;
@@ -39,6 +40,7 @@ public class EnemyUnit : MonoBehaviour
         fireRate = type.fireRate;
         agent = gameObject.GetComponent<NavMeshAgent>();
         gameManager = GameObject.FindGameObjectWithTag("GameManager").GetComponent<GameManager>();
+        source = GetComponent<AudioSource>();
     }
     // Start is called before the first frame update
     void Start()
@@ -107,6 +109,7 @@ public class EnemyUnit : MonoBehaviour
 
     public void LoseHP(int i)
     {
+        source.PlayOneShot(type.getDamage);
         GameObject g = Instantiate(popUp, transform.position + new Vector3(Random.Range(-0.5f, 0.5f), 1, 0), Quaternion.identity);
         g.GetComponent<TextMeshProUGUI>().color = red;
         g.GetComponent<PopUp>().text = "-" + i.ToString();
@@ -119,6 +122,7 @@ public class EnemyUnit : MonoBehaviour
 
     private void Death()
     {
+        source.PlayOneShot(type.death);
         gameManager.enemyUnits.Remove(gameObject);
         foreach(PlayerUnit p in targetedBy)
         {

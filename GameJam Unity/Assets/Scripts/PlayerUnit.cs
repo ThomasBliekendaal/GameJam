@@ -41,6 +41,7 @@ public class PlayerUnit : MonoBehaviour
     private NavMeshAgent agent;
     private GameManager gameManager;
     private float fireTimer;
+    private float hitTimer;
     public List<EnemyUnit> enemiesInRange = new List<EnemyUnit>();
     public List<EnemyUnit> targetedBy = new List<EnemyUnit>();
     public List<PlayerUnit> units = new List<PlayerUnit>();
@@ -128,24 +129,15 @@ public class PlayerUnit : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if(target != null)
+        if (target != null)
         {
             agent.destination = gameObject.transform.position;
             transform.LookAt(target.transform.position);
             fireTimer -= Time.deltaTime;
             if(fireTimer <= 0 && spinTime <= 0)
             {
-                
-                if (type.name != "MeleeUnit")
-                {
-                    source.PlayOneShot(type.cast);
-                    CastDelay(hitDelay);
-                }
-                else
-                {
-                    source.PlayOneShot(type.attack);
-                    Attack();
-                }
+                source.PlayOneShot(type.attack);
+                Attack();
             }
         }
         else
@@ -204,10 +196,8 @@ public class PlayerUnit : MonoBehaviour
             {
                 if (fireTimer <= 0 && spinTime <= 0)
                 {
-                    print("basic one");
                     target.GetComponent<EnemyUnit>().LoseHP(damage);
                     fireTimer = fireRate;
-                    print(fireTimer + "/" + fireRate);
                 }
             }
             else
@@ -398,12 +388,5 @@ public class PlayerUnit : MonoBehaviour
         damageText.text = damage.ToString();
         speedText.text = agent.speed.ToString();
         fireRateText.text = fireRate.ToString();
-    }
-
-    private IEnumerator CastDelay(float wait)
-    {
-        yield return new WaitForSeconds(wait);
-        source.PlayOneShot(type.attack);
-        Attack();
     }
 }

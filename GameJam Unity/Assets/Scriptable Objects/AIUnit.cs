@@ -10,4 +10,6 @@ public class AIUnit : ScriptableObject
     public float attackRange;
     public float detectRange;
     public float fireRate;
+    public AudioClip death;
+    public AudioClip getDamage;
 }
