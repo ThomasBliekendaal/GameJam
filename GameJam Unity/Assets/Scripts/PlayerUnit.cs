@@ -219,24 +219,23 @@ public class PlayerUnit : MonoBehaviour
         {
             foreach(PlayerUnit p in units)
             {
-                print(p);
-                print(healTarget);
                 if (healTarget == null && p.hp < p.maxHp)
                 {
                     healTarget = p;
                 }
-                else if((p.maxHp - p.hp) > (healTarget.maxHp - healTarget.hp))
+                else if(healTarget != null)
                 {
-                    healTarget = p;
+                    if((p.maxHp - p.hp) > (healTarget.maxHp - healTarget.hp))
+                    {
+                        healTarget = p;
+                    }
                 }
-                print(p);
-                print(healTarget);
             }
             if (healTarget != null)
             {
                 healTarget.LoseHP(-damage);
                 healTarget = null;
-                //source.PlayOneShot(type.healAudio);
+                source.PlayOneShot(type.healAudio);
                 fireTimer = fireRate;
             }
             else
