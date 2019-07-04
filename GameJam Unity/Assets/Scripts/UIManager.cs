@@ -8,9 +8,13 @@ public class UIManager : MonoBehaviour
 {
     public List<Button> mainMenu = new List<Button>();
     public List<Button> start = new List<Button>();
+    public List<Button> pause = new List<Button>();
     public List<Button> options = new List<Button>();
     public List<Button> optionsClose = new List<Button>();
     public List<Button> closeGame = new List<Button>();
+
+    public AudioClip buttonPress;
+    public AudioSource source;
 
     public List<PlayerUnit> units = new List<PlayerUnit>();
     public List<GameObject> upgrades = new List<GameObject>();
@@ -43,17 +47,21 @@ public class UIManager : MonoBehaviour
         {
             b.onClick.AddListener(delegate { LoadScene(1); });
         }
+        foreach(Button b in pause)
+        {
+            b.onClick.AddListener(delegate { TogglePause(); });
+        }
         foreach (Button b in options)
         {
-            b.onClick.AddListener(delegate { optionsPanel.SetActive(true); });
+            b.onClick.AddListener(delegate { optionsPanel.SetActive(true); source.PlayOneShot(buttonPress); });
         }
         foreach (Button b in optionsClose)
         {
-            b.onClick.AddListener(delegate { optionsPanel.SetActive(false); });
+            b.onClick.AddListener(delegate { optionsPanel.SetActive(false); source.PlayOneShot(buttonPress); });
         }
         foreach (Button b in closeGame)
         {
-            b.onClick.AddListener(delegate { Application.Quit(); });
+            b.onClick.AddListener(delegate { source.PlayOneShot(buttonPress); Application.Quit(); });
         }
     }
 
@@ -78,10 +86,25 @@ public class UIManager : MonoBehaviour
                 }
             }
         }
-        if(pausePanel != null && Input.GetButtonDown("Cancel"))
+        if (Input.GetButtonDown("Cancel"))
+        {
+            TogglePause();
+        }
+    }
+
+    private void LoadScene(int scene)
+    {
+        source.PlayOneShot(buttonPress);
+        SceneManager.LoadScene(scene);
+    }
+
+    private void TogglePause()
+    {
+        source.PlayOneShot(buttonPress);
+        if (pausePanel != null)
         {
             pausePanel.SetActive(!pausePanel.active);
-            if(pausePanel.active == true)
+            if (pausePanel.active == true)
             {
                 Time.timeScale = 0;
             }
@@ -90,10 +113,5 @@ public class UIManager : MonoBehaviour
                 Time.timeScale = 1;
             }
         }
-    }
-
-    private void LoadScene(int scene)
-    {
-        SceneManager.LoadScene(scene);
     }
 }

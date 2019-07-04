@@ -21,6 +21,8 @@ public class Unit : ScriptableObject
     public AudioClip abilityOneAudio;
     public AudioClip abilityTwoAudio;
     public AudioClip healAudio;
+    public AudioClip buttonPress;
+    public AudioClip buttonFail;
 
     public virtual void AbilityOne(GameObject self)
     {

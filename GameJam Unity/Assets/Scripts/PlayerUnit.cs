@@ -236,7 +236,7 @@ public class PlayerUnit : MonoBehaviour
             {
                 healTarget.LoseHP(-damage);
                 healTarget = null;
-                source.PlayOneShot(type.healAudio);
+                //source.PlayOneShot(type.healAudio);
                 fireTimer = fireRate;
             }
             else
@@ -251,6 +251,7 @@ public class PlayerUnit : MonoBehaviour
     {
         if (cooldownTimer <= 0)
         {
+            source.PlayOneShot(type.buttonPress);
             if (ability == 1)
             {
                 print("call abil");
@@ -264,6 +265,10 @@ public class PlayerUnit : MonoBehaviour
                 source.PlayOneShot(type.abilityTwoAudio);
                 cooldownTimer = abilityCooldownTwo;
             }
+        }
+        else
+        {
+            source.PlayOneShot(type.buttonFail);
         }
     }
 
