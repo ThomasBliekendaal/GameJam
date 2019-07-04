@@ -19526,7 +19526,7 @@ CanvasRenderer:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 9166920982394639671}
-  m_CullTransparentMesh: 0
+  m_CullTransparentMesh: 1
 --- !u!114 &9166920982394639657
 MonoBehaviour:
   m_ObjectHideFlags: 0
