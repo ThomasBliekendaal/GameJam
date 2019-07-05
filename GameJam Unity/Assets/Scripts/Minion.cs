@@ -16,9 +16,11 @@ public class Minion : MonoBehaviour
     public List<EnemyUnit> targetedBy = new List<EnemyUnit>();
     private Animator anim;
     private GameManager manager;
+    private IEnumerator coroutine;
 
     private void Start()
     {
+        coroutine = Dying(5);
         fireTimer = fireRate;
         agent = GetComponent<NavMeshAgent>();
         ResetTarget();
@@ -84,6 +86,7 @@ public class Minion : MonoBehaviour
         {
             e.ClearTarget();
         }
+        StartCoroutine(coroutine);
     }
 
     private void SetAnim(string animation)
@@ -105,4 +108,9 @@ public class Minion : MonoBehaviour
         }
     }
 
+    private IEnumerator Dying(float time)
+    {
+        yield return new WaitForSeconds(time);
+        Destroy(gameObject);
+    }
 }

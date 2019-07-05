@@ -22,6 +22,7 @@ public class EnemyUnit : MonoBehaviour
     private GameObject target;
     private AudioSource source;
     private Animator anim;
+    private IEnumerator coroutine;
 
     private int hp;
     private int damage;
@@ -34,6 +35,7 @@ public class EnemyUnit : MonoBehaviour
 
     private void Awake()
     {
+        coroutine = Dying(5);
         hp = type.hp;
         damage = type.damage;
         attackRange = type.attackRange;
@@ -145,7 +147,7 @@ public class EnemyUnit : MonoBehaviour
         }
         gameManager.GetComponent<UIManager>().points += 1;
         gameManager.GetComponent<UIManager>().maxPoints += 1;
-        Destroy(gameObject);
+        StartCoroutine(coroutine);
     }
 
     public void ClearTarget()
@@ -197,5 +199,11 @@ public class EnemyUnit : MonoBehaviour
         {
             anim.SetBool("isDying", true);
         }
+    }
+
+    private IEnumerator Dying(float time)
+    {
+        yield return new WaitForSeconds(time);
+        Destroy(gameObject);
     }
 }

@@ -38,6 +38,7 @@ public class PlayerUnit : MonoBehaviour
     [Header("Animation")]
     private Animator anim;
     private IEnumerator coroutine;
+    private IEnumerator deathRoutine;
 
     [Header("Data")]
     public GameObject target;
@@ -91,6 +92,7 @@ public class PlayerUnit : MonoBehaviour
 
     void Start()
     {
+        deathRoutine = Dying(5);
         rangeTrigger.radius = range;
         print(gameManager.endGoals.Count);
         endGoal = gameManager.endGoals[Random.Range(0, gameManager.endGoals.Count)];
@@ -384,7 +386,7 @@ public class PlayerUnit : MonoBehaviour
             gameManager.supportUnits.Remove(gameObject);
         }
         source.PlayOneShot(type.death);
-        Destroy(gameObject);
+        StartCoroutine(deathRoutine);
     }
 
     private void DisplayUpgrades()
@@ -487,5 +489,11 @@ public class PlayerUnit : MonoBehaviour
         source.PlayOneShot(type.attack);
         Attack();
         yield return new WaitForSeconds(68 * Time.deltaTime);
+    }
+
+    private IEnumerator Dying(float time)
+    {
+        yield return new WaitForSeconds(time);
+        Destroy(gameObject);
     }
 }
