@@ -1133,6 +1133,36 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 702e0601df2e01b4b8ee7e61dadcb72a, type: 3}
+--- !u!1 &239125824
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 239125825}
+  m_Layer: 0
+  m_Name: CamPos2
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &239125825
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 239125824}
+  m_LocalRotation: {x: 0.092379026, y: -0.0023922839, z: 0.000059048765, w: 0.9957211}
+  m_LocalPosition: {x: -11.065918, y: 1.9800001, z: -13.95}
+  m_LocalScale: {x: 1.01, y: 1.01, z: 1.01}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 26
+  m_LocalEulerAnglesHint: {x: 10.601001, y: -0.277, z: -0.019000001}
 --- !u!1 &318275710
 GameObject:
   m_ObjectHideFlags: 0
@@ -1670,6 +1700,7 @@ GameObject:
   - component: {fileID: 433469787}
   - component: {fileID: 433469790}
   - component: {fileID: 433469791}
+  - component: {fileID: 433469792}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -1850,6 +1881,34 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!114 &433469792
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 433469786}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 151f496d4d18d9349af72cc19e40a831, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  maxPosRight: 0
+  maxPosLeft: 0
+  trueZoom: 0
+  trueZoomMax: 1
+  trueZoomMin: 0
+  zoomAmount: 0
+  moveSpeed: 3
+  moveSpeedFromStart: 3
+  moveSpeedToAdd: 6
+  rotateSpeed: 1
+  hor: 0
+  camHor: 0
+  camPos: {x: 0, y: 0, z: 0}
+  camRot: {x: 0, y: 0, z: 0}
+  CameraZoomPosition1: {fileID: 1378870954}
+  CameraZoomPosition2: {fileID: 239125824}
 --- !u!4 &468765136 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 8175243409514452870, guid: ef4814e51470dc84593e4ab5f9b7039a,
@@ -5413,6 +5472,36 @@ MonoBehaviour:
   minHeight: -0.005
   timeUntilMove: 3
   timePassed: 0
+--- !u!1 &1378870954
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1378870955}
+  m_Layer: 0
+  m_Name: CamPos1
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1378870955
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1378870954}
+  m_LocalRotation: {x: 0.092379026, y: -0.0023922839, z: 0.000059048765, w: 0.9957211}
+  m_LocalPosition: {x: -11.065918, y: 4.48, z: -18.128098}
+  m_LocalScale: {x: 1.01, y: 1.01, z: 1.01}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 25
+  m_LocalEulerAnglesHint: {x: 10.601001, y: -0.277, z: -0.019000001}
 --- !u!1001 &1387736605
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -7486,31 +7575,6 @@ PrefabInstance:
       propertyPath: m_AnchorMax.y
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 7558251277143357571, guid: 0d471569d3bb84f4c9fa7f60048d2b38,
-        type: 3}
-      propertyPath: endGoals.Array.size
-      value: 3
-      objectReference: {fileID: 0}
-    - target: {fileID: 7558251277143357571, guid: 0d471569d3bb84f4c9fa7f60048d2b38,
-        type: 3}
-      propertyPath: audioSource
-      value: 
-      objectReference: {fileID: 433469791}
-    - target: {fileID: 7558251277143357571, guid: 0d471569d3bb84f4c9fa7f60048d2b38,
-        type: 3}
-      propertyPath: endGoals.Array.data[0]
-      value: 
-      objectReference: {fileID: 744381021}
-    - target: {fileID: 7558251277143357571, guid: 0d471569d3bb84f4c9fa7f60048d2b38,
-        type: 3}
-      propertyPath: endGoals.Array.data[1]
-      value: 
-      objectReference: {fileID: 1453974340}
-    - target: {fileID: 7558251277143357571, guid: 0d471569d3bb84f4c9fa7f60048d2b38,
-        type: 3}
-      propertyPath: endGoals.Array.data[2]
-      value: 
-      objectReference: {fileID: 1412543068}
     - target: {fileID: 6441025314399272149, guid: 0d471569d3bb84f4c9fa7f60048d2b38,
         type: 3}
       propertyPath: m_LocalPosition.z
@@ -7601,6 +7665,31 @@ PrefabInstance:
       propertyPath: m_LocalPosition.x
       value: -28.956568
       objectReference: {fileID: 0}
+    - target: {fileID: 7558251277143357571, guid: 0d471569d3bb84f4c9fa7f60048d2b38,
+        type: 3}
+      propertyPath: endGoals.Array.size
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 7558251277143357571, guid: 0d471569d3bb84f4c9fa7f60048d2b38,
+        type: 3}
+      propertyPath: audioSource
+      value: 
+      objectReference: {fileID: 433469791}
+    - target: {fileID: 7558251277143357571, guid: 0d471569d3bb84f4c9fa7f60048d2b38,
+        type: 3}
+      propertyPath: endGoals.Array.data[0]
+      value: 
+      objectReference: {fileID: 744381021}
+    - target: {fileID: 7558251277143357571, guid: 0d471569d3bb84f4c9fa7f60048d2b38,
+        type: 3}
+      propertyPath: endGoals.Array.data[1]
+      value: 
+      objectReference: {fileID: 1453974340}
+    - target: {fileID: 7558251277143357571, guid: 0d471569d3bb84f4c9fa7f60048d2b38,
+        type: 3}
+      propertyPath: endGoals.Array.data[2]
+      value: 
+      objectReference: {fileID: 1412543068}
     - target: {fileID: 2899869618470031601, guid: 0d471569d3bb84f4c9fa7f60048d2b38,
         type: 3}
       propertyPath: source
