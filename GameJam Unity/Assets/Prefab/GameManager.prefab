@@ -10,6 +10,9 @@ GameObject:
   m_Component:
   - component: {fileID: 1272086137216792091}
   - component: {fileID: 1272086137216792088}
+  - component: {fileID: 5871989033086639722}
+  - component: {fileID: 4155198971878903820}
+  - component: {fileID: 4657359522568081234}
   m_Layer: 0
   m_Name: GameManager
   m_TagString: GameManager
@@ -54,3 +57,74 @@ MonoBehaviour:
   rangedUnits: []
   supportUnits: []
   enemyUnits: []
+--- !u!114 &5871989033086639722
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1272086137216792089}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 012a4ce822bd21943ab8979b47c95c56, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  mainMenu:
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  start: []
+  pause:
+  - {fileID: 0}
+  options: []
+  optionsClose: []
+  closeGame: []
+  buttonPress: {fileID: 8300000, guid: c71af1c4fa8dbae49b8743057a5e5076, type: 3}
+  source: {fileID: 0}
+  units: []
+  upgrades:
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  pointCounter: {fileID: 0}
+  optionsPanel: {fileID: 0}
+  pausePanel: {fileID: 0}
+  points: 0
+  maxPoints: 0
+--- !u!114 &4155198971878903820
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1272086137216792089}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7bb03bf9e333864439d807fd670f4857, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  musicMixer: {fileID: 24100000, guid: 477dc028fdc4cb54d99d6552752e2b36, type: 2}
+  effectsMixer: {fileID: 24100000, guid: 61089bbc165e5f44b8417cd28b202260, type: 2}
+--- !u!114 &4657359522568081234
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1272086137216792089}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 63a49677719431545b5e53f6603d3ae8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  masterSlider: {fileID: 0}
+  musicSlider: {fileID: 0}
+  effectsSlider: {fileID: 0}
+  masterVolume: 0
+  musicVolume: 0
+  effectsVolume: 0
+  musicMixer: {fileID: 24100000, guid: 477dc028fdc4cb54d99d6552752e2b36, type: 2}
+  effectsMixer: {fileID: 24100000, guid: 61089bbc165e5f44b8417cd28b202260, type: 2}

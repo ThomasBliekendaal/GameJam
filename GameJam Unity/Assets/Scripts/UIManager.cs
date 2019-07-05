@@ -15,6 +15,7 @@ public class UIManager : MonoBehaviour
 
     public AudioClip buttonPress;
     public AudioSource source;
+    public AudioClip menuMusic;
 
     public List<PlayerUnit> units = new List<PlayerUnit>();
     public List<GameObject> upgrades = new List<GameObject>();
@@ -71,6 +72,11 @@ public class UIManager : MonoBehaviour
         foreach (Button b in closeGame)
         {
             b.onClick.AddListener(delegate { source.PlayOneShot(buttonPress); Application.Quit(); });
+        }
+        if(menuMusic != null && SceneManager.GetActiveScene().buildIndex < 1)
+        {
+            source.PlayOneShot(menuMusic);
+            source.loop = true;
         }
     }
 

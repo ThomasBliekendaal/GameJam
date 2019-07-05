@@ -6842,6 +6842,11 @@ PrefabInstance:
       propertyPath: endGoals.Array.data[2]
       value: 
       objectReference: {fileID: 1412543068}
+    - target: {fileID: 2899869618470031601, guid: 0d471569d3bb84f4c9fa7f60048d2b38,
+        type: 3}
+      propertyPath: source
+      value: 
+      objectReference: {fileID: 433469791}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 0d471569d3bb84f4c9fa7f60048d2b38, type: 3}
 --- !u!1001 &1787101692
