@@ -62,6 +62,10 @@ public class GameManager : MonoBehaviour
         {
             if (SceneManager.GetActiveScene().buildIndex < 5)
             {
+                if (PlayerPrefs.HasKey("Points"))
+                {
+                    PlayerPrefs.SetInt("Points", gameObject.GetComponent<UIManager>().maxPoints);
+                }
                 SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
             }
             else

@@ -31,7 +31,7 @@ MonoBehaviour:
   buttonFail: {fileID: 8300000, guid: 67ca6ef4730ade7419355194b3de34ae, type: 3}
   explosion: {fileID: 4851449780496341430, guid: b2e8d4baee263cf4c852d3ef6c1dc779,
     type: 3}
-  minion: {fileID: 8917445495726711811, guid: fb5e9bd518c6a62489d82bd812edb569, type: 3}
+  minion: {fileID: 9112651312029534917, guid: cc1e51eaafec9094b873ce7f341c3a10, type: 3}
   spawnOffsets:
   - {x: 1, y: 0, z: 1}
   - {x: 1, y: 0, z: -1}
