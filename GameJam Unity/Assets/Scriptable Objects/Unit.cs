@@ -24,6 +24,9 @@ public class Unit : ScriptableObject
     public AudioClip buttonPress;
     public AudioClip buttonFail;
 
+    public GameObject attackVFX;
+    public GameObject healVFX;
+
     public virtual void AbilityOne(GameObject self)
     {
         Debug.Log("Ability one activated");

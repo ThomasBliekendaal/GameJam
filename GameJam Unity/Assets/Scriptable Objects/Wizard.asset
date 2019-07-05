@@ -29,6 +29,9 @@ MonoBehaviour:
   healAudio: {fileID: 0}
   buttonPress: {fileID: 8300000, guid: c71af1c4fa8dbae49b8743057a5e5076, type: 3}
   buttonFail: {fileID: 8300000, guid: 67ca6ef4730ade7419355194b3de34ae, type: 3}
+  attackVFX: {fileID: 8692336514843445655, guid: 757ff55584650dc45b3e38bf26559c73,
+    type: 3}
+  healVFX: {fileID: 4921729538502818497, guid: 913875e14ff173a4a8be23bacb465acd, type: 3}
   explosion: {fileID: 4851449780496341430, guid: b2e8d4baee263cf4c852d3ef6c1dc779,
     type: 3}
   minion: {fileID: 9112651312029534917, guid: cc1e51eaafec9094b873ce7f341c3a10, type: 3}

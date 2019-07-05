@@ -326,6 +326,7 @@ public class PlayerUnit : MonoBehaviour
             }
             else if (damage < 0)
             {
+                Instantiate(type.healVFX, transform.position, Quaternion.identity);
                 g.GetComponent<TextMeshProUGUI>().color = green;
                 g.GetComponent<PopUp>().text = "+" + (-1 * damage).ToString();
                 source.PlayOneShot(type.getHeal);
@@ -475,6 +476,7 @@ public class PlayerUnit : MonoBehaviour
 
     private IEnumerator Attacking()
     {
+        Instantiate(type.attackVFX, target.transform.position, Quaternion.identity);
         source.PlayOneShot(type.attack);
         Attack();
         yield return new WaitForSeconds(68 * Time.deltaTime);
