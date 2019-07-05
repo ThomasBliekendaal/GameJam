@@ -15,6 +15,7 @@ public class Minion : MonoBehaviour
     private NavMeshAgent agent;
     public List<EnemyUnit> targetedBy = new List<EnemyUnit>();
     private Animator anim;
+    private GameManager manager;
 
     private void Start()
     {
@@ -22,6 +23,7 @@ public class Minion : MonoBehaviour
         agent = GetComponent<NavMeshAgent>();
         ResetTarget();
         anim = GetComponent<Animator>();
+        manager = GameObject.FindGameObjectWithTag("GameManager").GetComponent<GameManager>();
     }
 
     private void Update()
@@ -55,7 +57,7 @@ public class Minion : MonoBehaviour
 
     public void Search()
     {
-        trigger.radius += searchGrowth;
+        target = manager.enemyUnits[Random.Range(0, manager.enemyUnits.Count)];
     }
 
     private void OnTriggerEnter(Collider other)
