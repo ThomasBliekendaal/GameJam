@@ -6,6 +6,7 @@ using UnityEngine.SceneManagement;
 
 public class UIManager : MonoBehaviour
 {
+    public bool greybox;
     public List<Button> mainMenu = new List<Button>();
     public List<Button> start = new List<Button>();
     public List<Button> pause = new List<Button>();
@@ -51,11 +52,14 @@ public class UIManager : MonoBehaviour
         }
         foreach(Button b in start)
         {
-            if (PlayerPrefs.HasKey("Points"))
+            if (greybox == false)
             {
-                PlayerPrefs.SetInt("Points", 0);
+                b.onClick.AddListener(delegate { LoadScene(1); });
             }
-            b.onClick.AddListener(delegate { LoadScene(1); });
+            else
+            {
+                b.onClick.AddListener(delegate { LoadScene(6); });
+            }
         }
         foreach(Button b in pause)
         {
@@ -112,6 +116,10 @@ public class UIManager : MonoBehaviour
 
     private void LoadScene(int scene)
     {
+        if (PlayerPrefs.HasKey("Points"))
+        {
+            PlayerPrefs.SetInt("Points", 0);
+        }
         source.PlayOneShot(buttonPress);
         SceneManager.LoadScene(scene);
     }

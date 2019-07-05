@@ -741,6 +741,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 012a4ce822bd21943ab8979b47c95c56, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  greybox: 1
   mainMenu: []
   start:
   - {fileID: 1046073474}

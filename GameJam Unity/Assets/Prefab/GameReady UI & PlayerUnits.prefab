@@ -14045,7 +14045,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1acd7ec4fbde5eb48977fe23c3d68f0c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  type: {fileID: 11400000, guid: 47959706a6d95484da70717e45a52f79, type: 2}
+  type: {fileID: 11400000, guid: c046208dd6ead784cb27d4f31f6c6074, type: 2}
   rangeTrigger: {fileID: 1934213028406642559}
   abilityOne: {fileID: 7987847005870561815}
   abilityTwo: {fileID: 0}
@@ -14069,7 +14069,7 @@ MonoBehaviour:
   damageBuffTimer: 0
   target: {fileID: 0}
   endGoal: {fileID: 0}
-  fireTimer: 0
+  gameManager: {fileID: 0}
   enemiesInRange: []
   targetedBy: []
   units: []
@@ -14308,7 +14308,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1acd7ec4fbde5eb48977fe23c3d68f0c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  type: {fileID: 11400000, guid: 47959706a6d95484da70717e45a52f79, type: 2}
+  type: {fileID: 11400000, guid: c046208dd6ead784cb27d4f31f6c6074, type: 2}
   rangeTrigger: {fileID: 1934213028710488371}
   abilityOne: {fileID: 0}
   abilityTwo: {fileID: 2946369225699240356}
@@ -14332,7 +14332,7 @@ MonoBehaviour:
   damageBuffTimer: 0
   target: {fileID: 0}
   endGoal: {fileID: 0}
-  fireTimer: 0
+  gameManager: {fileID: 0}
   enemiesInRange: []
   targetedBy: []
   units: []
@@ -90300,7 +90300,7 @@ MonoBehaviour:
   damageBuffTimer: 0
   target: {fileID: 0}
   endGoal: {fileID: 0}
-  fireTimer: 0
+  gameManager: {fileID: 0}
   enemiesInRange: []
   targetedBy: []
   units: []
@@ -90583,7 +90583,7 @@ MonoBehaviour:
   damageBuffTimer: 0
   target: {fileID: 0}
   endGoal: {fileID: 0}
-  fireTimer: 0
+  gameManager: {fileID: 0}
   enemiesInRange: []
   targetedBy: []
   units: []
@@ -109747,7 +109747,7 @@ MonoBehaviour:
   damageBuffTimer: 0
   target: {fileID: 0}
   endGoal: {fileID: 0}
-  fireTimer: 0
+  gameManager: {fileID: 0}
   enemiesInRange: []
   targetedBy: []
   units: []
@@ -110007,7 +110007,7 @@ MonoBehaviour:
   damageBuffTimer: 0
   target: {fileID: 0}
   endGoal: {fileID: 0}
-  fireTimer: 0
+  gameManager: {fileID: 0}
   enemiesInRange: []
   targetedBy: []
   units: []
@@ -110259,11 +110259,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 6543021012812332654}
     m_Modifications:
-    - target: {fileID: 1272086137216792089, guid: 3ec8f73dad6cac44b9cbec8b41377573,
-        type: 3}
-      propertyPath: m_Name
-      value: GameManager
-      objectReference: {fileID: 0}
     - target: {fileID: 1272086137216792091, guid: 3ec8f73dad6cac44b9cbec8b41377573,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -110318,6 +110313,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1272086137216792089, guid: 3ec8f73dad6cac44b9cbec8b41377573,
+        type: 3}
+      propertyPath: m_Name
+      value: GameManager
       objectReference: {fileID: 0}
     - target: {fileID: 1272086137216792088, guid: 3ec8f73dad6cac44b9cbec8b41377573,
         type: 3}
