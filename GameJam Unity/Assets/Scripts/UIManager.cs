@@ -15,6 +15,7 @@ public class UIManager : MonoBehaviour
 
     public AudioClip buttonPress;
     public AudioSource source;
+    public AudioClip menuMusic;
 
     public List<PlayerUnit> units = new List<PlayerUnit>();
     public List<GameObject> upgrades = new List<GameObject>();
@@ -24,9 +25,14 @@ public class UIManager : MonoBehaviour
     public GameObject pausePanel;
 
     public int points;
+    public int maxPoints;
 
     private void Start()
     {
+        if (PlayerPrefs.HasKey("Points"))
+        {
+            maxPoints = PlayerPrefs.GetInt("Points");
+        }
         foreach(GameObject g in GameObject.FindGameObjectsWithTag("Melee"))
         {
             units.Add(g.GetComponent<PlayerUnit>());
@@ -45,6 +51,10 @@ public class UIManager : MonoBehaviour
         }
         foreach(Button b in start)
         {
+            if (PlayerPrefs.HasKey("Points"))
+            {
+                PlayerPrefs.SetInt("Points", 0);
+            }
             b.onClick.AddListener(delegate { LoadScene(1); });
         }
         foreach(Button b in pause)
@@ -63,32 +73,40 @@ public class UIManager : MonoBehaviour
         {
             b.onClick.AddListener(delegate { source.PlayOneShot(buttonPress); Application.Quit(); });
         }
+        if(menuMusic != null && SceneManager.GetActiveScene().buildIndex < 1)
+        {
+            source.PlayOneShot(menuMusic);
+            source.loop = true;
+        }
     }
 
     private void Update()
     {
-        pointCounter.text = points.ToString();
-        if (points > 0)
+        if (SceneManager.GetActiveScene().buildIndex > 1)
         {
-            foreach(GameObject g in upgrades)
+            pointCounter.text = points.ToString();
+            if (points > 0)
             {
-                g.SetActive(true);
-            }
-        }
-        else
-        {
-            foreach (GameObject g in upgrades)
-            {
-                g.SetActive(false);
-                foreach (PlayerUnit p in units)
+                foreach (GameObject g in upgrades)
                 {
-                    p.upgrades.SetActive(false);
+                    g.SetActive(true);
                 }
             }
-        }
-        if (Input.GetButtonDown("Cancel"))
-        {
-            TogglePause();
+            else
+            {
+                foreach (GameObject g in upgrades)
+                {
+                    g.SetActive(false);
+                    foreach (PlayerUnit p in units)
+                    {
+                        p.upgrades.SetActive(false);
+                    }
+                }
+            }
+            if (Input.GetButtonDown("Cancel"))
+            {
+                TogglePause();
+            }
         }
     }
 
