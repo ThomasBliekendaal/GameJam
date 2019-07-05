@@ -14,12 +14,14 @@ public class Minion : MonoBehaviour
     public SphereCollider trigger;
     private NavMeshAgent agent;
     public List<EnemyUnit> targetedBy = new List<EnemyUnit>();
+    private Animator anim;
 
     private void Start()
     {
         fireTimer = fireRate;
         agent = GetComponent<NavMeshAgent>();
         ResetTarget();
+        anim = GetComponent<Animator>();
     }
 
     private void Update()
@@ -30,9 +32,11 @@ public class Minion : MonoBehaviour
         }
         else
         {
+            SetAnim("Walking");
             agent.destination = target.transform.position;
             if(fireTimer <= 0)
             {
+                SetAnim("Attacking");
                 target.GetComponent<EnemyUnit>().LoseHP(damage);
                 fireTimer = fireRate;
             }
@@ -70,9 +74,29 @@ public class Minion : MonoBehaviour
 
     private void Death()
     {
+        SetAnim("Dying");
         foreach(EnemyUnit e in targetedBy)
         {
             e.ClearTarget();
+        }
+    }
+
+    private void SetAnim(string animation)
+    {
+        anim.SetBool("isWalking", false);
+        anim.SetBool("isAttacking", false);
+        anim.SetBool("isDying", false);
+        if(animation == "Walking")
+        {
+            anim.SetBool("isWalking", true);
+        }
+        if(animation == "Attacking")
+        {
+            anim.SetBool("isAttacking", true);
+        }
+        if(animation == "Dying")
+        {
+            anim.SetBool("isDying", true);
         }
     }
 
