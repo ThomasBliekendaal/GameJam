@@ -7,7 +7,7 @@ public class Minion : MonoBehaviour
 {
     public int damage;
     public float fireRate;
-    private float fireTimer;
+    [SerializeField] private float fireTimer;
     public float hp;
     public GameObject target;
     public float searchGrowth;
@@ -67,9 +67,12 @@ public class Minion : MonoBehaviour
         }
     }
 
-    private void OnCollisionStay(Collision collision)
+    private void OnTriggerStay(Collider other)
     {
-        fireTimer -= Time.deltaTime;
+        if(other.tag == "Enemy")
+        {
+            fireTimer -= Time.deltaTime;
+        }
     }
 
     private void Death()
