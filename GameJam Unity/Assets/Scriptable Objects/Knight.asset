@@ -29,5 +29,7 @@ MonoBehaviour:
   healAudio: {fileID: 0}
   buttonPress: {fileID: 8300000, guid: c71af1c4fa8dbae49b8743057a5e5076, type: 3}
   buttonFail: {fileID: 8300000, guid: 67ca6ef4730ade7419355194b3de34ae, type: 3}
+  attackVFX: {fileID: 21544836772197515, guid: a8e71505b14ddbc4ea4a65858f652a85, type: 3}
+  healVFX: {fileID: 4921729538502818497, guid: 913875e14ff173a4a8be23bacb465acd, type: 3}
   invulnerableTime: 5
   spinTime: 5

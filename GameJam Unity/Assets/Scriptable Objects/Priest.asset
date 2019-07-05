@@ -29,6 +29,9 @@ MonoBehaviour:
   healAudio: {fileID: 8300000, guid: bd5135024a573884695f3c137171ebda, type: 3}
   buttonPress: {fileID: 8300000, guid: c71af1c4fa8dbae49b8743057a5e5076, type: 3}
   buttonFail: {fileID: 8300000, guid: 67ca6ef4730ade7419355194b3de34ae, type: 3}
+  attackVFX: {fileID: 8406053856248144283, guid: dbbd1bbf0aba7b34780389c8005c5769,
+    type: 3}
+  healVFX: {fileID: 4921729538502818497, guid: 913875e14ff173a4a8be23bacb465acd, type: 3}
   healAmount: 10
   damageMultiplier: 2
   damageBuffTime: 5
