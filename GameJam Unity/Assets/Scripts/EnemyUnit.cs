@@ -21,6 +21,7 @@ public class EnemyUnit : MonoBehaviour
     private NavMeshAgent agent;
     private GameObject target;
     private AudioSource source;
+    private Animator anim;
 
     private int hp;
     private int damage;
@@ -41,6 +42,7 @@ public class EnemyUnit : MonoBehaviour
         agent = gameObject.GetComponent<NavMeshAgent>();
         gameManager = GameObject.FindGameObjectWithTag("GameManager").GetComponent<GameManager>();
         source = GetComponent<AudioSource>();
+        anim = GetComponent<Animator>();
     }
     // Start is called before the first frame update
     void Start()
@@ -59,6 +61,7 @@ public class EnemyUnit : MonoBehaviour
         }
         else if (stay == false)
         {
+            SetAnim("Walking");
             agent.destination = target.transform.position;
         }
         if(attacking == true)
@@ -66,6 +69,7 @@ public class EnemyUnit : MonoBehaviour
             fireTimer -= Time.deltaTime;
             if(fireTimer <= 0)
             {
+                SetAnim("Attacking");
                 Attack();
                 fireTimer = fireRate;
             }
@@ -123,6 +127,7 @@ public class EnemyUnit : MonoBehaviour
 
     private void Death()
     {
+        SetAnim("Dying");
         source.PlayOneShot(type.death);
         gameManager.enemyUnits.Remove(gameObject);
         foreach(PlayerUnit p in targetedBy)
@@ -172,6 +177,25 @@ public class EnemyUnit : MonoBehaviour
         if(target != null)
         {
             target.GetComponent<PlayerUnit>().targetedBy.Add(gameObject.GetComponent<EnemyUnit>());
+        }
+    }
+
+    private void SetAnim(string animation)
+    {
+        anim.SetBool("isWalking", false);
+        anim.SetBool("isAttacking", false);
+        anim.SetBool("isDying", false);
+        if(animation == "Walking")
+        {
+            anim.SetBool("isWalking", true);
+        }
+        if(animation == "Attacking")
+        {
+            anim.SetBool("isAttacking", true);
+        }
+        if(animation == "Dying")
+        {
+            anim.SetBool("isDying", true);
         }
     }
 }
