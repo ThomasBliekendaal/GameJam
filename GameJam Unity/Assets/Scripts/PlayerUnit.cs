@@ -41,10 +41,10 @@ public class PlayerUnit : MonoBehaviour
 
     [Header("Data")]
     public GameObject target;
-    public GameObject endGoal;
+    [SerializeField] public GameObject endGoal;
     private NavMeshAgent agent;
-    private GameManager gameManager;
-    [SerializeField] private float fireTimer;
+    [SerializeField] private GameManager gameManager;
+    private float fireTimer;
     private float hitTimer;
     public List<EnemyUnit> enemiesInRange = new List<EnemyUnit>();
     public List<EnemyUnit> targetedBy = new List<EnemyUnit>();
@@ -92,7 +92,12 @@ public class PlayerUnit : MonoBehaviour
     void Start()
     {
         rangeTrigger.radius = range;
+        print(gameManager.endGoals.Count);
         endGoal = gameManager.endGoals[Random.Range(0, gameManager.endGoals.Count)];
+        if(endGoal == null)
+        {
+            endGoal = GameObject.FindGameObjectWithTag("End");
+        }
         agent.destination = endGoal.transform.position;
         SetAnim("Walking");
         if(displayUpgrades != null)
@@ -326,7 +331,8 @@ public class PlayerUnit : MonoBehaviour
             }
             else if (damage < 0)
             {
-                Instantiate(type.healVFX, transform.position, Quaternion.identity);
+                GameObject o = Instantiate(type.healVFX, transform.position, Quaternion.identity);
+                o.transform.rotation.SetEulerAngles(-90, 0, 0);
                 g.GetComponent<TextMeshProUGUI>().color = green;
                 g.GetComponent<PopUp>().text = "+" + (-1 * damage).ToString();
                 source.PlayOneShot(type.getHeal);
@@ -476,7 +482,8 @@ public class PlayerUnit : MonoBehaviour
 
     private IEnumerator Attacking()
     {
-        Instantiate(type.attackVFX, target.transform.position, Quaternion.identity);
+        GameObject o = Instantiate(type.attackVFX, target.transform.position, Quaternion.identity);
+        o.transform.rotation.SetEulerAngles(-90, 0, 0);
         source.PlayOneShot(type.attack);
         Attack();
         yield return new WaitForSeconds(68 * Time.deltaTime);
